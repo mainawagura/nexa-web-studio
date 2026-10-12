@@ -15,16 +15,16 @@ export const DemoLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* Discreet Professional Showcase Banner */}
+      {/* Discreet Demo Notice */}
       <aside 
-        aria-label="Showcase notice"
+        aria-label="Demo notice"
         className="sticky top-0 z-50 bg-nexa-navy text-white text-xs px-4 py-2.5 shadow-md flex flex-wrap items-center justify-between gap-2 border-b border-nexa-navy-light"
       >
         <div className="flex items-center gap-2">
           <span className="flex h-2 w-2 rounded-full bg-nexa-teal animate-pulse"></span>
-          <span className="font-semibold text-nexa-teal">Live Showcase Model</span>
+          <span className="font-semibold text-nexa-teal">Portfolio Demo</span>
           <span className="hidden sm:inline text-slate-300">
-            — Experience the real navigation, speed, and conversion workflows crafted by Nexa Web Studio.
+            — This sample website demonstrates our design and development capabilities.
           </span>
         </div>
 
@@ -34,7 +34,7 @@ export const DemoLayout: React.FC = () => {
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white font-medium transition-colors text-xs"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Back to All Showcases</span>
+            <span>Return to Portfolio</span>
           </Link>
 
           <button
@@ -62,14 +62,14 @@ export const DemoLayout: React.FC = () => {
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          <span>Exit Showcase</span>
+          <span>Return to Portfolio</span>
         </Link>
         <button
           onClick={() => setIsModalOpen(true)}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-colors"
         >
           <Sparkles className="w-3.5 h-3.5" />
-          <span>Request This Website</span>
+          <span>Request Similar Website</span>
         </button>
       </aside>
 

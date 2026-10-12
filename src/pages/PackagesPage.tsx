@@ -53,13 +53,13 @@ export const PackagesPage: React.FC = () => {
                 {/* Price Display */}
                 <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-100">
                   <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold block">
-                    Illustrative Investment:
+                    Pricing:
                   </span>
-                  <span className="text-xl font-extrabold text-nexa-navy mt-0.5 block font-mono">
+                  <span className="text-xl font-extrabold text-nexa-navy mt-0.5 block">
                     {pkg.priceNote}
                   </span>
                   <span className="text-[11px] text-slate-400 mt-1 block">
-                    Exact quote determined by specific pages & integrations
+                    Customized proposal based on your specific requirements
                   </span>
                 </div>
 

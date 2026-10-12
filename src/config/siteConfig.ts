@@ -33,51 +33,48 @@ export const siteConfig = {
   packages: [
     {
       id: "starter",
-      name: "Starter Business Website",
-      tagline: "Clean, professional online presence for new ventures & service providers",
-      priceNote: "Starting from $300 / KES 40,000",
-      idealFor: "Solo consultants, small clinics, local trades, or portfolio showcases",
+      name: "Starter Website",
+      tagline: "Clean, professional online presence for emerging ventures & local services",
+      priceNote: "Request a Quote",
+      idealFor: "Solo consultants, local trades, or essential portfolio showcases",
       features: [
-        "Up to 5 custom-designed responsive pages",
-        "Mobile-first, lightning-fast React / static architecture",
-        "Direct WhatsApp inquiry button & lead capture form",
-        "Google Maps, business hours & social media integration",
-        "Basic SEO setup & metadata indexing",
-        "Domain & high-speed Vercel hosting setup assistance",
-        "2 weeks of complimentary launch support"
+        "Professional homepage with custom branding",
+        "Essential business information & service highlights",
+        "Direct contact details & WhatsApp lead capture",
+        "Mobile-responsive, fast-loading layout",
+        "Google Maps & business hours integration",
+        "Complimentary launch assistance"
       ]
     },
     {
       id: "business",
-      name: "Growth Business Platform",
-      tagline: "High-impact website with interactive features, catalogs & client booking",
-      priceNote: "Starting from $650 / KES 85,000",
+      name: "Business Website",
+      tagline: "Full-scale corporate website with interactive portfolio & lead generation",
+      priceNote: "Request a Quote",
       popular: true,
-      idealFor: "Property managers, real estate agencies, hotels, restaurants & contractors",
+      idealFor: "Construction contractors, hotels, real estate agencies & restaurants",
       features: [
-        "Up to 10 bespoke pages with interactive components",
-        "Custom property/product catalogs with live search & filters",
-        "Interactive booking, table reservation, or quotation calculators",
-        "M-Pesa / payment gateway readiness & Daraja API integration",
-        "Content management system (CMS) or easy update dashboard",
-        "Complete on-page SEO & social share OpenGraph optimization",
-        "4 weeks of complimentary post-launch support"
+        "Multiple bespoke pages & structured site navigation",
+        "Comprehensive services & completed projects portfolio",
+        "Interactive customer inquiry & quote request forms",
+        "Solid SEO foundations & Google indexing",
+        "High-resolution photo galleries & filters",
+        "Social media & WhatsApp Business funnel"
       ]
     },
     {
       id: "premium",
-      name: "Custom Enterprise & E-commerce",
-      tagline: "Advanced web systems, full e-commerce, custom portals & API integrations",
-      priceNote: "Starting from $1,200 / KES 150,000",
-      idealFor: "Diaspora property portals, multi-branch clinics, logistics & online stores",
+      name: "Premium Website",
+      tagline: "Advanced custom functionality, client portals & specialized integrations",
+      priceNote: "Request a Quote",
+      idealFor: "Property tech portals, resorts with booking engines, multi-branch clinics & e-commerce",
       features: [
-        "Unlimited custom pages & advanced web application workflows",
-        "Full e-commerce cart, checkout & inventory or tenant portal",
-        "Database integration (SQL Server, PostgreSQL or Firebase)",
-        "Automated WhatsApp / SMS / Email transaction receipts",
-        "Multi-currency support (KES, USD, GBP, EUR) for diaspora clients",
-        "Bank-grade security, audit logs & role-based access",
-        "Dedicated ongoing maintenance & priority support retainer"
+        "Custom functionality & dynamic workflows",
+        "Advanced integrations (payment readiness, M-Pesa, booking calculators)",
+        "More detailed page structures & multi-tier catalogs",
+        "Additional bespoke design customization & branding",
+        "Role-based client or tenant portals",
+        "Priority post-launch maintenance & support"
       ]
     }
   ] as WebsitePackage[],
@@ -88,9 +85,9 @@ export const siteConfig = {
     let text = customMessage;
     if (!text) {
       if (demoName) {
-        text = `Hello Nexa Web Studio, I was exploring your portfolio and I'm interested in building a website similar to your "${demoName}" demo. Can we discuss?`;
+        text = `Hello Nexa Web Studio, I viewed your ${demoName} demo and would like a similar website for my business.`;
       } else {
-        text = `Hello Nexa Web Studio, I'm interested in getting a professional business website developed. Could you share more information?`;
+        text = `Hello Nexa Web Studio, I am interested in getting a professional business website developed. Could you share more information?`;
       }
     }
     return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(text)}`;
