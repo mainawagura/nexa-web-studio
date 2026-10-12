@@ -2,73 +2,30 @@ import { ProjectDemo, ProjectCategory } from '../types/portfolio';
 
 export const categoriesList: ProjectCategory[] = [
   "All Projects",
-  "Property Management",
-  "Real Estate",
   "Construction",
   "Hotels",
+  "Travel and Tourism",
+  "Real Estate",
+  "Property Management",
   "Restaurants",
   "Consultancies",
   "Clinics",
   "Small Businesses",
   "E-commerce",
-  "Education",
-  "Travel and Tourism"
+  "Education"
 ];
 
 export const projectsData: ProjectDemo[] = [
-  {
-    id: "haven-property",
-    slug: "haven-property-management",
-    name: "Haven Property Management",
-    category: "Property Management",
-    industry: "Property Management & Diaspora Rentals",
-    tagline: "Transparent remote management for residential and commercial estates",
-    shortDescription: "Complete property management portal with live rental vacancy search, tenant maintenance logging, and diaspora landlord financial reporting.",
-    fullDescription: "Designed specifically for property management firms, landlords, and overseas property investors. Features property search with filters, rent collection transparency, landlord onboarding, and direct WhatsApp inquiries.",
-    colorScheme: {
-      primary: "#082B4C",
-      secondary: "#0D9488",
-      accent: "#14B8A6",
-      bgBadge: "bg-teal-50",
-      textBadge: "text-teal-700"
-    },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "M-Pesa Ledger Ready", "Responsive UI"],
-    features: ["Property Search & Filters", "Landlord & Tenant Portals", "Rental Yield Highlights", "WhatsApp Quick Inquiries"],
-    previewImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
-    route: "/demos/haven-property-management",
-    featured: true
-  },
-  {
-    id: "primenest-realty",
-    slug: "primenest-realty",
-    name: "PrimeNest Realty",
-    category: "Real Estate",
-    industry: "Real Estate Agency & Brokerage",
-    tagline: "Luxury real estate brokerage and prime investment listings",
-    shortDescription: "Modern brokerage showcase featuring high-res property galleries, advanced neighborhood filtering, agent profiles, and home valuation requests.",
-    fullDescription: "Tailored for real estate brokers and developers selling premium apartments, suburban villas, and commercial plots. Includes an interactive property finder and property appraisal request form.",
-    colorScheme: {
-      primary: "#0F172A",
-      secondary: "#D97706",
-      accent: "#F59E0B",
-      bgBadge: "bg-amber-50",
-      textBadge: "text-amber-800"
-    },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Interactive Filter", "Gallery Modal"],
-    features: ["Price & Location Filters", "High-Res Image Galleries", "Agent Directory", "Property Valuation Form"],
-    previewImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-    route: "/demos/primenest-realty",
-    featured: true
-  },
+  // 1. CONSTRUCTION COMPANIES (Primary Target Category from Reference Design)
   {
     id: "buildstrong-construction",
     slug: "buildstrong-construction",
     name: "BuildStrong Construction",
     category: "Construction",
     industry: "Commercial & Civil Contracting",
-    tagline: "Heavy civil, commercial building and structural contracting",
-    shortDescription: "Industrial-grade website demonstrating completed civil projects, safety certifications, plant capabilities, and a structured quotation request system.",
-    fullDescription: "Built for general contractors, engineering firms, and civil construction companies. Emphasizes track record, technical equipment, safety compliance, and structured RFP/quote requests.",
+    tagline: "Build with Confidence: Heavy civil, commercial building and structural contracting",
+    shortDescription: "Industrial-grade corporate website built to showcase completed civil projects, plant capabilities, safety certifications, and generate online quotation requests.",
+    fullDescription: "Built specifically for general contractors, engineering firms, and civil construction companies. Emphasizes completed track records, heavy equipment fleet, safety accreditations, and structured quotation RFP forms.",
     colorScheme: {
       primary: "#0F172A",
       secondary: "#EA580C",
@@ -76,21 +33,23 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-orange-50",
       textBadge: "text-orange-700"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Filterable Project Gallery", "RFP Quote Form"],
-    features: ["Project Portfolio by Sector", "Equipment & Capabilities", "Execution Process", "Instant Quotation Estimator"],
+    keyCapabilities: ["Completed Project Gallery", "Instant Quotation Estimator", "Safety Accreditations", "Mobile Optimized"],
+    features: ["Project Portfolio by Sector", "Equipment & Plant Capabilities", "Execution Methodology", "Instant Quotation Estimator"],
     previewImage: "https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=800&q=80",
     route: "/demos/buildstrong-construction",
     featured: true
   },
+
+  // 2. HOTELS & TOUR OPERATORS (Primary Target Category from Reference Design)
   {
     id: "serenity-hotels",
     slug: "serenity-hotels",
     name: "Serenity Hotels & Resorts",
     category: "Hotels",
     industry: "Boutique Hospitality & Luxury Lodges",
-    tagline: "Tranquil coastal retreat and boutique executive suites",
-    shortDescription: "Sophisticated hospitality platform with interactive check-in/out date selection, guest calculators, room type comparisons, and direct dining reservations.",
-    fullDescription: "Ideal for boutique resorts, business hotels, and safari lodges looking to bypass high OTA commissions with direct guest booking inquiries, virtual room tours, and dining packages.",
+    tagline: "Tranquil coastal sanctuary and boutique executive suites",
+    shortDescription: "Sophisticated hospitality platform featuring an interactive stay price calculator, suite photo galleries, amenities showcase, and direct guest booking inquiries.",
+    fullDescription: "Engineered for boutique beach resorts, safari lodges, and executive business hotels looking to secure direct, commission-free reservations with instant date and guest calculations.",
     colorScheme: {
       primary: "#064E3B",
       secondary: "#B45309",
@@ -98,12 +57,82 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-emerald-50",
       textBadge: "text-emerald-800"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Date & Guest Picker", "Room Showcase"],
-    features: ["Interactive Date & Guest Selector", "Suites & Amenities Gallery", "Dining & Spa Showcase", "Direct Booking Inquiry"],
+    keyCapabilities: ["Interactive Stay Calculator", "Direct Suite Reservation", "HD Photo Tours", "Direct WhatsApp Concierge"],
+    features: ["Interactive Date & Guest Selector", "Suites & Amenities Showcase", "Coastal Dining & Spa Packages", "Direct Booking Inquiry"],
     previewImage: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
     route: "/demos/serenity-hotels",
     featured: true
   },
+  {
+    id: "safarivista-tours",
+    slug: "safarivista-tours",
+    name: "SafariVista Tours & Expeditions",
+    category: "Travel and Tourism",
+    industry: "African Safaris & Bespoke Holidays",
+    tagline: "Unforgettable wildlife safaris, bush adventures, and beach escapes",
+    shortDescription: "Inspiring tourism website featuring multi-day safari itineraries, destination highlights, wildlife photography, and custom tour quote builders.",
+    fullDescription: "Tailored for tour operators, safari outfitters, and travel agencies. Highlights national park packages (Maasai Mara, Serengeti, Amboseli), day-by-day itineraries, and custom traveler requests.",
+    colorScheme: {
+      primary: "#14532D",
+      secondary: "#D97706",
+      accent: "#84CC16",
+      bgBadge: "bg-amber-50",
+      textBadge: "text-amber-900"
+    },
+    keyCapabilities: ["Day-by-Day Itineraries", "Custom Safari Builder", "Destination Highlights", "Fast Lead Generation"],
+    features: ["Day-by-Day Itineraries", "Destination Highlights", "Seasonality Travel Guide", "Custom Safari Builder"],
+    previewImage: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80",
+    route: "/demos/safarivista-tours",
+    featured: true
+  },
+
+  // 3. REAL ESTATE AGENCIES & PROPERTY MANAGERS (Primary Target Category from Reference Design)
+  {
+    id: "primenest-realty",
+    slug: "primenest-realty",
+    name: "PrimeNest Realty",
+    category: "Real Estate",
+    industry: "Real Estate Agency & Brokerage",
+    tagline: "Find Your Dream Home: Luxury brokerage and prime investment listings",
+    shortDescription: "High-end real estate agency website featuring search by neighborhood, high-res property image inspection, agent directory, and free home valuation forms.",
+    fullDescription: "Tailored for property developers and real estate brokerages marketing high-value apartments, villas, and commercial land. Features interactive neighborhood search and buyer inquiry funnels.",
+    colorScheme: {
+      primary: "#0F172A",
+      secondary: "#D97706",
+      accent: "#F59E0B",
+      bgBadge: "bg-amber-50",
+      textBadge: "text-amber-800"
+    },
+    keyCapabilities: ["Search by Neighborhood", "HD Property Inspection", "Agent Direct Call", "Complimentary Valuation Form"],
+    features: ["Price & Location Filters", "High-Res Image Galleries", "Agent Directory", "Property Valuation Form"],
+    previewImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    route: "/demos/primenest-realty",
+    featured: true
+  },
+  {
+    id: "haven-property",
+    slug: "haven-property-management",
+    name: "Haven Property Management",
+    category: "Property Management",
+    industry: "Property Management & Diaspora Rentals",
+    tagline: "Transparent remote management for residential and commercial estates",
+    shortDescription: "Complete property management portal with live rental vacancy search, tenant maintenance logging, and diaspora landlord financial remittance reporting.",
+    fullDescription: "Designed for property managers and landlords with diaspora clients. Features rental search with status filters, tenant repair logging, and transparent owner statement overviews.",
+    colorScheme: {
+      primary: "#082B4C",
+      secondary: "#0D9488",
+      accent: "#14B8A6",
+      bgBadge: "bg-teal-50",
+      textBadge: "text-teal-700"
+    },
+    keyCapabilities: ["Live Vacancy Search", "Tenant Ticket Logger", "Diaspora Owner Statements", "WhatsApp Fast Inquiries"],
+    features: ["Property Search & Filters", "Landlord & Tenant Portals", "Rental Yield Highlights", "WhatsApp Quick Inquiries"],
+    previewImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    route: "/demos/haven-property-management",
+    featured: true
+  },
+
+  // EXPANSION CATEGORIES:
   {
     id: "green-fork-restaurant",
     slug: "green-fork-restaurant",
@@ -120,7 +149,7 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-lime-50",
       textBadge: "text-lime-800"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Interactive Menu Tabs", "Table Reservation Form"],
+    keyCapabilities: ["Interactive Food Menu", "Table Reservation Form", "Takeout Order Flow", "Dietary Tags & Filters"],
     features: ["Categorized Food Menu", "Dietary Filter (Vegan/GF)", "Table Reservation Engine", "WhatsApp Orders Direct"],
     previewImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
     route: "/demos/green-fork-restaurant",
@@ -142,7 +171,7 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-sky-50",
       textBadge: "text-sky-800"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Case Study Modals", "Calendar Booking Form"],
+    keyCapabilities: ["Quantified Case Studies", "Practice Area Deep Dives", "Partner Leadership Bios", "Strategy Call Booking"],
     features: ["Practice Area Deep Dives", "Quantified Case Studies", "Leadership Bios", "Discovery Call Booking"],
     previewImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
     route: "/demos/apex-consulting",
@@ -164,7 +193,7 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-cyan-50",
       textBadge: "text-cyan-800"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Department Filter", "Appointment Request Form"],
+    keyCapabilities: ["Specialty Departments", "Physician Profiles", "Online Appointment Form", "24/7 Urgent Care Info"],
     features: ["Specialty Departments", "Physician Profiles", "Working Hours & Emergency Lines", "Online Appointment Request"],
     previewImage: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
     route: "/demos/citycare-clinic",
@@ -177,8 +206,8 @@ export const projectsData: ProjectDemo[] = [
     category: "Small Businesses",
     industry: "Residential & Commercial Cleaning",
     tagline: "Eco-friendly, certified deep cleaning and facility management",
-    shortDescription: "High-converting service business website with instant package comparisons, interactive square-footage pricing estimates, and fast WhatsApp booking.",
-    fullDescription: "Perfect for local service businesses like cleaners, landscapers, plumbers, or HVAC technicians wanting to turn visitors into booked jobs with transparent illustrative packages and WhatsApp CTAs.",
+    shortDescription: "High-converting service business website with instant package comparisons, interactive room pricing estimates, and fast WhatsApp booking.",
+    fullDescription: "Perfect for local service businesses like cleaners, landscapers, plumbers, or contractors wanting to turn visitors into booked jobs with transparent illustrative packages and WhatsApp CTAs.",
     colorScheme: {
       primary: "#1E40AF",
       secondary: "#059669",
@@ -186,7 +215,7 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-blue-50",
       textBadge: "text-blue-800"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Cost Estimator Calculator", "WhatsApp Direct"],
+    keyCapabilities: ["Interactive Cost Estimator", "Service Package Tiers", "Neighborhood Coverage", "Fast WhatsApp Booking"],
     features: ["Package Comparison", "Service Area Coverage", "Instant Estimator Tool", "Fast Booking Inquiry"],
     previewImage: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80",
     route: "/demos/sparklepro-services",
@@ -208,33 +237,11 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-indigo-50",
       textBadge: "text-indigo-800"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Course Tabs", "Admission Application Form"],
+    keyCapabilities: ["Curriculum Syllabus Tabs", "Instructor Highlights", "Tuition Schedules", "Online Enrollment Form"],
     features: ["Course Curriculum Previews", "Instructor Highlights", "Tuition & Schedule Tables", "Admission Inquiry Form"],
     previewImage: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
     route: "/demos/edubridge-academy",
     featured: false
-  },
-  {
-    id: "safarivista-tours",
-    slug: "safarivista-tours",
-    name: "SafariVista Tours & Expeditions",
-    category: "Travel and Tourism",
-    industry: "African Safaris & Bespoke Holidays",
-    tagline: "Unforgettable wildlife safaris, bush adventures, and beach escapes",
-    shortDescription: "Breathtaking tourism platform showcasing multi-day safari itineraries, wildlife photography, package inclusions, and custom tour quote builder.",
-    fullDescription: "Tailored for tour operators and safari outfitters. Highlights national park itineraries (Maasai Mara, Serengeti, Diani Coast), accommodation tiers, and customized safari request workflows.",
-    colorScheme: {
-      primary: "#14532D",
-      secondary: "#D97706",
-      accent: "#84CC16",
-      bgBadge: "bg-amber-50",
-      textBadge: "text-amber-900"
-    },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Itinerary Accordions", "Custom Tour Inquiry"],
-    features: ["Day-by-Day Itineraries", "Destination Highlights", "Seasonality Guide", "Custom Safari Builder"],
-    previewImage: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80",
-    route: "/demos/safarivista-tours",
-    featured: true
   },
   {
     id: "luxecart-boutique",
@@ -252,7 +259,7 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-gray-100",
       textBadge: "text-gray-900"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Interactive Shopping Cart", "Demo Checkout"],
+    keyCapabilities: ["Interactive Shopping Cart", "Category Product Filters", "Subtotal Calculation", "Demo Checkout Flow"],
     features: ["Interactive Shopping Cart", "Category & Price Filters", "Product Quick View", "Sample Checkout Flow"],
     previewImage: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
     route: "/demos/luxecart-boutique",
@@ -274,7 +281,7 @@ export const projectsData: ProjectDemo[] = [
       bgBadge: "bg-orange-50",
       textBadge: "text-orange-800"
     },
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Live Tracking Simulator", "Freight Rate Form"],
+    keyCapabilities: ["Real-Time Cargo Tracker", "Fleet Specifications", "Regional Route Map", "Rate Quotation Request"],
     features: ["Sample Shipment Tracker", "Fleet Specifications", "Regional Route Coverage", "Instant Rate Request"],
     previewImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
     route: "/demos/swiftmove-logistics",

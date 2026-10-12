@@ -1,8 +1,8 @@
 import React from 'react';
 import { useOutletContext, Link } from 'react-router-dom';
 import { 
-  Code, Laptop, Database, RefreshCw, CheckCircle2, MessageSquare, 
-  ArrowRight, ShieldCheck, Globe, Cpu, Sparkles 
+  Laptop, Database, RefreshCw, CheckCircle2, MessageSquare, 
+  ArrowRight, ShieldCheck, Globe, Sparkles, TrendingUp, Layers, Target
 } from 'lucide-react';
 import { siteConfig } from '../config/siteConfig';
 import { MainLayoutContext } from '../layouts/MainLayout';
@@ -18,7 +18,7 @@ export const AboutPage: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nexa-navy/5 text-nexa-navy border border-nexa-navy/10 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-nexa-teal" />
-            <span>Developer Profile & Capabilities</span>
+            <span>Digital Studio Profile & Capabilities</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold text-nexa-navy tracking-tight">
@@ -26,46 +26,46 @@ export const AboutPage: React.FC = () => {
           </h1>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            I am a software engineer and web developer building custom, high-impact business websites, web applications, and database-driven solutions for local enterprises, African diaspora entrepreneurs, and international clients.
+            We engineer custom, high-converting business websites, interactive booking engines, and digital client portals for established enterprises, African diaspora entrepreneurs, and growing businesses worldwide.
           </p>
         </div>
 
-        {/* Narrative & Developer Vision */}
+        {/* Narrative & Agency Vision */}
         <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-card grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div className="lg:col-span-7 space-y-5 text-sm text-slate-600 leading-relaxed">
             <h2 className="text-2xl font-bold text-nexa-navy">
-              Engineering Websites That Drive Real Business Results
+              Engineering Websites That Drive Real Business Growth
             </h2>
             
             <p>
-              In today's digital economy, your website is often the very first touchpoint a customer, investor, or partner experiences. A slow, generic, or outdated website immediately erodes trust.
+              In today's competitive landscape, your website is the primary foundation of your company's credibility. Prospective clients evaluate your professionalism, reliability, and capability within seconds of landing on your page.
             </p>
 
             <p>
-              At Nexa Web Studio, I bridge the gap between world-class modern frontends and robust, secure backend architecture. Whether you run a property management firm in Nairobi needing remote diaspora tenant tracking, a boutique hotel seeking direct bookings, or a consulting practice requiring corporate authority, I engineer websites that inspire confidence and convert visitors into paying clients.
+              At Nexa Web Studio, we focus on commercial outcomes rather than generic templates. Whether you are a construction contractor showcasing major civil works to win tenders, a boutique hotel maximizing direct commission-free bookings, or a real estate agency connecting international buyers with premium homes, we design platforms that actively convert traffic into paying inquiries.
             </p>
 
             <p>
-              My development philosophy centers on clean code, transparent milestone collaboration, fast cloud deployments on platforms like Vercel, and deep localization with payment systems such as Safaricom M-Pesa.
+              Our delivery framework is structured, transparent, and milestone-driven. We provide regular video walk-throughs, clear staging previews, and robust post-launch support to ensure your digital asset consistently delivers results.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-4 text-xs font-semibold text-nexa-navy">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-nexa-teal" />
-                Modern React & TypeScript
+                Mobile-First Conversion Design
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-nexa-teal" />
-                C# .NET & SQL Databases
+                Direct Lead Funnels & WhatsApp
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-nexa-teal" />
-                Safaricom Daraja M-Pesa
+                M-Pesa & Payment Readiness
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-nexa-teal" />
-                Remote Diaspora Delivery
+                Transparent Remote Collaboration
               </span>
             </div>
           </div>
@@ -77,25 +77,25 @@ export const AboutPage: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-bold text-base">Nairobi, Kenya</h3>
-                <p className="text-xs text-slate-400">Serving Local & International Markets</p>
+                <p className="text-xs text-slate-400">Serving Local & International Clients</p>
               </div>
             </div>
 
             <div className="space-y-3 border-t border-slate-800 pt-5 text-xs text-slate-300">
               <div className="flex justify-between">
-                <span className="text-slate-400">Primary Focus:</span>
-                <span className="font-semibold text-white">Custom Business Systems & Web Apps</span>
+                <span className="text-slate-400">Core Specialty:</span>
+                <span className="font-semibold text-white">Business Websites & Client Portals</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Collaboration:</span>
-                <span className="font-semibold text-white">Zoom / Loom / GitHub Milestones</span>
+                <span className="text-slate-400">Collaboration Model:</span>
+                <span className="font-semibold text-white">Staged Milestones & Video Previews</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Hosting & DevOps:</span>
-                <span className="font-semibold text-white">Vercel, Cloudflare & Cloud SQL</span>
+                <span className="text-slate-400">Hosting Infrastructure:</span>
+                <span className="font-semibold text-white">High-Speed Global Cloud Hosting</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-400">Direct Inquiries:</span>
+                <span className="text-slate-400">Direct Consultation:</span>
                 <span className="font-semibold text-emerald-400">WhatsApp & Direct Email</span>
               </div>
             </div>
@@ -104,28 +104,28 @@ export const AboutPage: React.FC = () => {
               onClick={() => openRequestModal()}
               className="w-full py-3 rounded-xl bg-nexa-teal hover:bg-nexa-teal-light text-white font-bold text-xs transition-colors shadow-sm"
             >
-              Start a Conversation
+              Request a Consultation
             </button>
           </div>
 
         </div>
 
-        {/* 5 Core Highlights Requested by Prompt */}
+        {/* Core Pillars */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold text-nexa-navy">Core Engineering Pillars</h2>
-            <p className="text-xs text-slate-500 mt-1">What you can expect from every project built with Nexa Studio:</p>
+            <h2 className="text-2xl font-bold text-nexa-navy">Core Development Pillars</h2>
+            <p className="text-xs text-slate-500 mt-1">What your business can expect from every website we build:</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-card">
               <div className="w-10 h-10 rounded-lg bg-teal-50 text-nexa-teal flex items-center justify-center mb-4">
-                <Code className="w-5 h-5" />
+                <Layers className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-nexa-navy">Custom Website Development</h3>
+              <h3 className="font-bold text-base text-nexa-navy">Custom Design & Architecture</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                Handcrafted code built from the ground up to match your brand's specific identity, layout requirements, and business goals—no sluggish page builder bloat.
+                Bespoke layouts tailored specifically to your industry requirements, brand identity, and customer acquisition path—completely free of template bloat.
               </p>
             </div>
 
@@ -133,19 +133,19 @@ export const AboutPage: React.FC = () => {
               <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
                 <Laptop className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-nexa-navy">Responsive, Mobile-First Design</h3>
+              <h3 className="font-bold text-base text-nexa-navy">Responsive, Mobile-First UX</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                Over 75% of African and international users browse on mobile devices. Every screen size—from smartphones to large 4K desktop monitors—looks crisp and intuitive.
+                Over 75% of your customers browse on smartphones. Every screen size is engineered for instant tap responses, rapid navigation, and seamless browsing.
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-card">
               <div className="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
-                <Sparkles className="w-5 h-5" />
+                <Target className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-nexa-navy">Business-Focused UX & Conversions</h3>
+              <h3 className="font-bold text-base text-nexa-navy">Conversion Psychology</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                We design with conversion psychology: strategic call-to-actions, clear value propositions, interactive calculators, and frictionless WhatsApp lead funnels.
+                We position clear calls-to-action, quotation calculators, and direct WhatsApp links where potential clients naturally expect them, maximizing inquiries.
               </p>
             </div>
 
@@ -153,9 +153,9 @@ export const AboutPage: React.FC = () => {
               <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
                 <Database className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-nexa-navy">Database & Backend Integration</h3>
+              <h3 className="font-bold text-base text-nexa-navy">Database & Portals Integration</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                When your project requires dynamic data, secure authentication, or automated reporting, we integrate SQL Server, PostgreSQL, or C# APIs with precision.
+                When your business requires live inventory catalogs, tenant rent logs, or automated reporting, we connect secure, high-concurrency database systems.
               </p>
             </div>
 
@@ -163,9 +163,9 @@ export const AboutPage: React.FC = () => {
               <div className="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
                 <RefreshCw className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-base text-nexa-navy">Ongoing Maintenance & Improvements</h3>
+              <h3 className="font-bold text-base text-nexa-navy">Ongoing Maintenance & Optimization</h3>
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                A website is a living digital asset. We provide continuous support, performance audits, security patching, and iterative feature enhancements as your business expands.
+                A website is an active business investment. We offer scheduled performance audits, security monitoring, and continuous feature expansion as your company scales.
               </p>
             </div>
 
@@ -178,7 +178,7 @@ export const AboutPage: React.FC = () => {
             to="/portfolio"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-nexa-navy hover:bg-nexa-navy-light text-white font-semibold text-sm shadow-card transition-all"
           >
-            <span>Explore Our 12 Website Demos</span>
+            <span>Explore All 12 Business Website Showcases</span>
             <ArrowRight className="w-4 h-4 text-nexa-teal" />
           </Link>
         </div>

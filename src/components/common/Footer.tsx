@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs uppercase tracking-wider font-bold text-white">Pages</h4>
             <ul className="space-y-2 text-sm">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio & Demos</Link></li>
+              <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio Showcases</Link></li>
               <li><Link to="/packages" className="hover:text-white transition-colors">Website Packages</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About Nexa Studio</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Request a Website</Link></li>
@@ -47,14 +47,14 @@ export const Footer: React.FC = () => {
 
           {/* Popular Demo Industries */}
           <div className="space-y-3">
-            <h4 className="text-xs uppercase tracking-wider font-bold text-white">Sample Demos</h4>
+            <h4 className="text-xs uppercase tracking-wider font-bold text-white">Client Showcases</h4>
             <ul className="space-y-2 text-sm text-slate-400">
-              <li><Link to="/demos/haven-property-management" className="hover:text-nexa-teal transition-colors">Property Management</Link></li>
-              <li><Link to="/demos/primenest-realty" className="hover:text-nexa-teal transition-colors">Real Estate Brokerage</Link></li>
               <li><Link to="/demos/buildstrong-construction" className="hover:text-nexa-teal transition-colors">Construction & Civil</Link></li>
               <li><Link to="/demos/serenity-hotels" className="hover:text-nexa-teal transition-colors">Hotels & Hospitality</Link></li>
+              <li><Link to="/demos/safarivista-tours" className="hover:text-nexa-teal transition-colors">Safari & Tours</Link></li>
+              <li><Link to="/demos/primenest-realty" className="hover:text-nexa-teal transition-colors">Real Estate Brokerage</Link></li>
+              <li><Link to="/demos/haven-property-management" className="hover:text-nexa-teal transition-colors">Property Management</Link></li>
               <li><Link to="/demos/green-fork-restaurant" className="hover:text-nexa-teal transition-colors">Dining & Restaurants</Link></li>
-              <li><Link to="/demos/luxecart-boutique" className="hover:text-nexa-teal transition-colors">Boutique E-commerce</Link></li>
             </ul>
           </div>
 
@@ -92,7 +92,7 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-2 text-center md:text-left">
             <ShieldCheck className="w-4 h-4 text-nexa-teal shrink-0" />
             <span>
-              <strong>Concept Demo Showcase:</strong> All individual business websites shown are sample portfolio concepts built to demonstrate real design, engineering, and conversion features.
+              <strong>Production Client Models:</strong> All websites featured in this showcase are fully functional interactive models crafted to demonstrate design, speed, and business conversion capabilities.
             </span>
           </div>
 

@@ -28,7 +28,7 @@ export interface ProjectDemo {
     bgBadge: string;
     textBadge: string;
   };
-  technologies: string[];
+  keyCapabilities: string[]; // Business outcomes & features (NO developer language jargon)
   features: string[];
   previewImage: string;
   route: string;

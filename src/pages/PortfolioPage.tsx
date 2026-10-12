@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import { Search, Filter, ArrowRight, Sparkles, ExternalLink, ShieldCheck, X } from 'lucide-react';
+import { Search, Filter, ArrowRight, Sparkles, ExternalLink, ShieldCheck, X, CheckCircle2 } from 'lucide-react';
 import { projectsData, categoriesList } from '../data/projectsData';
 import { ProjectCategory } from '../types/portfolio';
 import { MainLayoutContext } from '../layouts/MainLayout';
@@ -23,7 +23,7 @@ export const PortfolioPage: React.FC = () => {
         project.category.toLowerCase().includes(query) ||
         project.industry.toLowerCase().includes(query) ||
         project.shortDescription.toLowerCase().includes(query) ||
-        project.technologies.some(t => t.toLowerCase().includes(query));
+        project.keyCapabilities.some(c => c.toLowerCase().includes(query));
 
       return matchesCategory && matchesSearch;
     });
@@ -35,17 +35,17 @@ export const PortfolioPage: React.FC = () => {
         
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nexa-navy/5 text-nexa-navy border border-nexa-navy/10 text-xs font-semibold">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-nexa-navy/5 text-nexa-navy border border-nexa-navy/10 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5 text-nexa-teal" />
-            <span>Interactive Demo Showcase</span>
+            <span>Interactive Industry Showcases</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold text-nexa-navy tracking-tight">
-            Explore Our Website Demos
+            Explore Our Business Website Demos
           </h1>
 
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            Discover what's possible for your business. Explore our sample websites, preview their features, and request a custom website inspired by your favorite design.
+            Discover what is possible for your business. Explore our working websites, test their features, and request a custom website tailored specifically for your brand.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export const PortfolioPage: React.FC = () => {
               type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Search by industry, feature, or keyword (e.g. M-Pesa, rental, luxury, menu)..."
+              placeholder="Search by industry, capability, or keyword (e.g. quotation, booking, properties, menu)..."
               className="w-full pl-12 pr-10 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-nexa-teal shadow-sm text-slate-800 placeholder-slate-400"
             />
             {searchQuery && (
@@ -92,7 +92,7 @@ export const PortfolioPage: React.FC = () => {
           {/* Active Filter Counter & Quick Reset */}
           <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-100">
             <span>
-              Showing <strong>{filteredProjects.length}</strong> of {projectsData.length} website demos
+              Showing <strong>{filteredProjects.length}</strong> of {projectsData.length} industry website models
             </span>
             {(selectedCategory !== "All Projects" || searchQuery) && (
               <button
@@ -109,12 +109,12 @@ export const PortfolioPage: React.FC = () => {
 
         </div>
 
-        {/* Concept Demo Notice Disclaimer */}
+        {/* Executive Client Model Notice */}
         <div className="p-4 rounded-xl bg-teal-50/70 border border-teal-200 flex items-center justify-between gap-3 text-xs text-teal-800">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-nexa-teal shrink-0" />
             <span>
-              <strong>Concept Demonstrations:</strong> All projects in this portfolio are fully working demo websites created to showcase design styles, user flows, and technical integrations.
+              <strong>Fully Functional Client Models:</strong> Every website showcased below features real page navigation, interactive forms, calculators, and responsive layouts ready for your brand.
             </span>
           </div>
           <span className="font-semibold text-nexa-teal hidden sm:inline">Nexa Web Studio</span>
@@ -141,35 +141,34 @@ export const PortfolioPage: React.FC = () => {
                     </span>
                   </div>
                   <div className="absolute top-3 right-3">
-                    <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-slate-950/80 text-white backdrop-blur-sm">
-                      Demo Project
+                    <span className="px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-slate-950/85 text-teal-300 backdrop-blur-sm border border-teal-500/20">
+                      Live Showcase
                     </span>
                   </div>
                 </div>
 
                 {/* Card Content */}
                 <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h3 className="text-lg font-bold text-nexa-navy group-hover:text-nexa-teal transition-colors">
-                        {project.name}
-                      </h3>
-                      <p className="text-xs text-slate-500 font-medium">{project.industry}</p>
-                    </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-nexa-navy group-hover:text-nexa-teal transition-colors">
+                      {project.name}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-medium mt-0.5">{project.industry}</p>
                   </div>
 
                   <p className="text-sm text-slate-600 mt-3 line-clamp-3 leading-relaxed flex-1">
                     {project.shortDescription}
                   </p>
 
-                  {/* Technology Tags */}
+                  {/* Business Key Capabilities (NO code languages) */}
                   <div className="mt-4 flex flex-wrap gap-1.5">
-                    {project.technologies.map((tech, i) => (
+                    {project.keyCapabilities.map((capability, i) => (
                       <span
                         key={i}
-                        className="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-[11px] font-mono"
+                        className="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-[11px] font-medium flex items-center gap-1"
                       >
-                        {tech}
+                        <span className="w-1.5 h-1.5 rounded-full bg-nexa-teal"></span>
+                        {capability}
                       </span>
                     ))}
                   </div>
@@ -180,7 +179,7 @@ export const PortfolioPage: React.FC = () => {
                       to={project.route}
                       className="flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-nexa-navy hover:bg-nexa-navy-light text-white text-xs font-semibold shadow-sm transition-colors"
                     >
-                      <span>Preview Demo</span>
+                      <span>Explore Live Site</span>
                       <ArrowRight className="w-3.5 h-3.5 text-nexa-teal" />
                     </Link>
 

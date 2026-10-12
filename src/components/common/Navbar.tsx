@@ -13,7 +13,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onRequestWebsite }) => {
 
   const navLinks = [
     { label: "Home", path: "/" },
-    { label: "Portfolio", path: "/portfolio", badge: "12 Demos" },
+    { label: "Portfolio", path: "/portfolio", badge: "12 Showcases" },
     { label: "Website Packages", path: "/packages" },
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
