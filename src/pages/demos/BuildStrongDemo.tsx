@@ -143,7 +143,17 @@ export const BuildStrongDemo: React.FC = () => {
             {filteredProjects.map((proj, i) => (
               <div key={i} className="bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 group">
                 <div className="relative aspect-[16/10] overflow-hidden">
-                  <img src={proj.image} alt={proj.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img 
+                    src={proj.image} 
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src !== "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80") {
+                        target.src = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80";
+                      }
+                    }}
+                    alt={proj.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                  />
                   <span className="absolute top-3 left-3 px-2.5 py-1 bg-orange-600 text-white text-[10px] font-bold uppercase rounded">
                     {proj.sector}
                   </span>

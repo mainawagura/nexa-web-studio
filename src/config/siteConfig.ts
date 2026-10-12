@@ -14,12 +14,12 @@ export const siteConfig = {
   description: "We build modern, fast, and high-converting business websites tailored for companies in Kenya, diaspora entrepreneurs, and international businesses.",
   
   // =========================================================================
-  // CONTACT DETAILS - Replace these with your real details when ready!
+  // CONTACT DETAILS
   // =========================================================================
-  whatsappNumber: "+254700000000", // e.g. +254712345678 (include country code without + when calling wa.me)
-  whatsappDisplay: "+254 700 000 000",
-  email: "hello@nexawebstudio.com",
-  phone: "+254 700 000 000",
+  whatsappNumber: "+254706059826",
+  whatsappDisplay: "+254 706 059 826",
+  email: "peterwaguraa@gmail.com",
+  phone: "+254 706 059 826",
   location: "Nairobi, Kenya",
   servingArea: "Serving Kenyan Businesses, Diaspora Owners & Global Clients",
 

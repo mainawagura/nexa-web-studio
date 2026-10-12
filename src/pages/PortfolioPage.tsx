@@ -132,6 +132,12 @@ export const PortfolioPage: React.FC = () => {
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
                   <img
                     src={project.previewImage}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src !== "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80") {
+                        target.src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80";
+                      }
+                    }}
                     alt={project.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

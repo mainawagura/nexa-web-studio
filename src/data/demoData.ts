@@ -44,7 +44,7 @@ export const buildStrongData = {
     { title: "Industrial Warehousing", desc: "Portal frame warehouses, heavy-duty floor slabs, and logistics storage facilities." }
   ],
   projects: [
-    { title: "Apex Financial Towers", sector: "Commercial", value: "KES 850M", year: "2025", image: "https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=600&q=80" },
+    { title: "Apex Financial Towers", sector: "Commercial", value: "KES 850M", year: "2025", image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" },
     { title: "Redhill Gated Enclave (18 Villas)", sector: "Residential", value: "KES 420M", year: "2024", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" },
     { title: "Mombasa Cold Storage Hub", sector: "Industrial", value: "KES 310M", year: "2026", image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80" }
   ]

@@ -35,7 +35,7 @@ export const projectsData: ProjectDemo[] = [
     },
     keyCapabilities: ["Completed Project Gallery", "Instant Quotation Estimator", "Safety Accreditations", "Mobile Optimized"],
     features: ["Project Portfolio by Sector", "Equipment & Plant Capabilities", "Execution Methodology", "Instant Quotation Estimator"],
-    previewImage: "https://images.unsplash.com/photo-1541888946425-d0fbb18615f8?auto=format&fit=crop&w=800&q=80",
+    previewImage: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
     route: "/demos/buildstrong-construction",
     featured: true
   },

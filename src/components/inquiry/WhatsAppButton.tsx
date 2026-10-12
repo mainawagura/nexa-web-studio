@@ -13,7 +13,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ demoName }) 
       className="fixed bottom-6 right-6 z-40 flex items-center group"
     >
       <span className="hidden group-hover:inline-block mr-3 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold shadow-lg animate-fadeIn border border-slate-700 whitespace-nowrap">
-        Chat with our lead developer on WhatsApp
+        Chat directly on WhatsApp: {siteConfig.whatsappDisplay}
       </span>
       <a
         href={siteConfig.getWhatsAppLink(undefined, demoName)}
