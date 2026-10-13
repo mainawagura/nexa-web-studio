@@ -1,5 +1,18 @@
 export type ProjectCategory = 
   | "All Projects"
+  | "Property Management & Real Estate"
+  | "Construction & Engineering"
+  | "Hotels & Hospitality"
+  | "Restaurants & Cafés"
+  | "Consulting & Professional Services"
+  | "Clinics & Healthcare"
+  | "Retail & E-commerce"
+  | "Schools & Education"
+  | "Beauty, Salons & Wellness"
+  | "Logistics & Transport"
+  | "Travel & Tourism"
+  | "Nonprofits & Community Organizations"
+  // Legacy short aliases:
   | "Property Management"
   | "Real Estate"
   | "Construction"
@@ -17,6 +30,7 @@ export interface ProjectDemo {
   slug: string;
   name: string;
   category: ProjectCategory;
+  categoryDisplay?: string;
   tagline: string;
   shortDescription: string;
   fullDescription: string;
@@ -28,9 +42,10 @@ export interface ProjectDemo {
     bgBadge: string;
     textBadge: string;
   };
-  keyCapabilities: string[]; // Business outcomes & features (NO developer language jargon)
+  keyCapabilities: string[]; // Business outcomes & features
   features: string[];
   previewImage: string;
+  mobilePreviewImage?: string;
   route: string;
   featured?: boolean;
 }

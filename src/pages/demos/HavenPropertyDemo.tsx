@@ -3,294 +3,469 @@ import { useOutletContext } from 'react-router-dom';
 import { 
   Building2, Key, ShieldCheck, CheckCircle2, MessageSquare, Phone, 
   Search, Filter, MapPin, DollarSign, Wrench, ArrowRight, UserCheck, 
-  Send, Sparkles 
+  Send, Sparkles, Bed, Bath, Maximize2, Calendar, Check, X
 } from 'lucide-react';
-import { havenData } from '../../data/demoData';
+import { havenstoneData } from '../../data/demoData';
 import { siteConfig } from '../../config/siteConfig';
 
 export const HavenPropertyDemo: React.FC = () => {
   const { openRequestModal } = useOutletContext<{ openRequestModal: () => void }>();
-  const [filterType, setFilterType] = useState("All");
-  const [maintenanceSubmitted, setMaintenanceSubmitted] = useState(false);
-  const [tenantUnit, setTenantUnit] = useState("");
-  const [tenantIssue, setTenantIssue] = useState("");
+  
+  // Tab / Page state
+  const [activeTab, setActiveTab] = useState<'home' | 'properties' | 'services' | 'about' | 'contact'>('home');
+  
+  // Listing filter states
+  const [searchLocation, setSearchLocation] = useState("");
+  const [selectedType, setSelectedType] = useState("All");
+  
+  // Viewing enquiry modal state
+  const [selectedPropertyForViewing, setSelectedPropertyForViewing] = useState<typeof havenstoneData.properties[0] | null>(null);
+  const [viewingFormSubmitted, setViewingFormSubmitted] = useState(false);
+  const [viewingDate, setViewingDate] = useState("");
+  const [viewerName, setViewerName] = useState("");
+  const [viewerPhone, setViewerPhone] = useState("");
 
-  const filteredProperties = havenData.properties.filter(p => {
-    if (filterType === "All") return true;
-    return p.status.includes(filterType);
+  // Tenant ticket state
+  const [ticketUnit, setTicketUnit] = useState("");
+  const [ticketDesc, setTicketDesc] = useState("");
+  const [ticketSuccess, setTicketSuccess] = useState(false);
+
+  const filteredProperties = havenstoneData.properties.filter(prop => {
+    const matchesLoc = !searchLocation || prop.location.toLowerCase().includes(searchLocation.toLowerCase()) || prop.title.toLowerCase().includes(searchLocation.toLowerCase());
+    const matchesType = selectedType === "All" || prop.type.toLowerCase().includes(selectedType.toLowerCase());
+    return matchesLoc && matchesType;
   });
 
-  const handleMaintenanceSubmit = (e: React.FormEvent) => {
+  const handleViewingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (tenantUnit && tenantIssue) {
-      setMaintenanceSubmitted(true);
+    if (viewerName && viewerPhone && viewingDate) {
+      setViewingFormSubmitted(true);
     }
   };
 
   return (
-    <div className="bg-slate-50 text-slate-800 font-sans">
+    <div className="bg-[#F7F6F2] text-[#171A21] font-sans min-h-screen">
       
-      {/* Demo Header Navigation */}
-      <header className="bg-white border-b border-slate-200 sticky top-10 z-30 shadow-subtle">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-[#082B4C] flex items-center justify-center text-white">
-              <Building2 className="w-5 h-5 text-teal-400" />
+      {/* Editorial Luxury Header Navigation */}
+      <header className="bg-[#171A21] text-[#F7F6F2] sticky top-10 z-30 border-b border-slate-800 shadow-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#C5A059] flex items-center justify-center text-[#171A21] font-black text-xl shadow-md">
+              <span>H</span>
             </div>
             <div>
-              <span className="font-extrabold text-xl text-[#082B4C] tracking-tight">HAVEN</span>
-              <span className="text-xs font-bold text-teal-600 block -mt-1 tracking-wider uppercase">Property Management</span>
+              <span className="font-serif text-2xl tracking-wide text-white block">HAVENSTONE</span>
+              <span className="text-[10px] uppercase font-bold text-[#C5A059] block -mt-1 tracking-widest">
+                Properties & Asset Management
+              </span>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
-            <a href="#properties" className="hover:text-teal-600 transition-colors">Vacancies</a>
-            <a href="#landlords" className="hover:text-teal-600 transition-colors">Landlord Services</a>
-            <a href="#tenants" className="hover:text-teal-600 transition-colors">Tenant Portal</a>
-            <a href="#about" className="hover:text-teal-600 transition-colors">About Us</a>
-            <a href="#contact" className="hover:text-teal-600 transition-colors">Contact</a>
-          </div>
+          {/* Sub-Pages / Navigation Tabs */}
+          <nav className="hidden md:flex items-center space-x-7 text-xs uppercase tracking-widest font-bold text-slate-300">
+            {[
+              { id: 'home', label: 'Home' },
+              { id: 'properties', label: 'Properties' },
+              { id: 'services', label: 'Management' },
+              { id: 'about', label: 'About' },
+              { id: 'contact', label: 'Contact' }
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`py-1.5 transition-colors ${
+                  activeTab === tab.id 
+                    ? 'text-[#C5A059] border-b-2 border-[#C5A059]' 
+                    : 'hover:text-white'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
 
           <div className="flex items-center gap-3">
             <a
-              href={siteConfig.getWhatsAppLink(undefined, "Haven Property Management")}
+              href={siteConfig.getWhatsAppLink(undefined, "Havenstone Properties")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-500 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition-colors"
             >
               <MessageSquare className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">WhatsApp Us</span>
+              <span>WhatsApp Concierge</span>
             </a>
             <button
               onClick={openRequestModal}
-              className="px-3.5 py-1.5 rounded-lg bg-[#082B4C] hover:bg-[#04182B] text-white text-xs font-semibold transition-colors"
+              className="px-4 py-2 rounded-lg bg-[#C5A059] hover:bg-[#b58f45] text-[#171A21] text-xs font-black uppercase tracking-wider transition-all"
             >
               Request Similar Site
             </button>
           </div>
+
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 bg-[#082B4C] text-white overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-[#171A21] text-white overflow-hidden border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-7 space-y-6">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 text-teal-300 border border-teal-500/20 text-xs font-semibold uppercase tracking-wider">
-                <ShieldCheck className="w-4 h-4 text-teal-400" />
-                Trusted by 140+ Diaspora Landlords
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/30 text-xs font-bold uppercase tracking-wider">
+                Excellence in Diaspora Asset Management • Nairobi
               </span>
-
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                Stress-Free Property Management Across Nairobi
+              
+              <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight leading-[1.1] text-[#F7F6F2]">
+                Protecting & Growing <br />
+                <span className="italic text-[#C5A059]">Prime Real Estate</span> Assets.
               </h1>
-
-              <p className="text-base text-slate-300 leading-relaxed max-w-xl">
-                We handle tenant placement, automated M-Pesa rent collection, routine repairs, and transparent monthly remittances so you can manage your Kenyan properties with total confidence from anywhere in the world.
+              
+              <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
+                We manage premier residential estates and commercial properties for local investors and overseas diaspora landlords with automated remittance, vetted tenants, and zero reconciliation leakage.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-4">
-                <a
-                  href="#properties"
-                  className="px-6 py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm shadow-md transition-colors"
-                >
-                  View Available Rentals
-                </a>
-                <a
-                  href="#landlords"
-                  className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 transition-colors"
-                >
-                  Landlord Onboarding
-                </a>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              {havenData.stats.map((s, i) => (
-                <div key={i} className="p-5 rounded-2xl bg-white/5 border border-white/10 text-center">
-                  <p className="text-3xl font-extrabold text-teal-400 font-mono">{s.value}</p>
-                  <p className="text-xs text-slate-300 mt-1 font-medium">{s.label}</p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Services for Landlords */}
-      <section id="landlords" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs uppercase tracking-wider font-bold text-teal-600">Landlord Solutions</span>
-          <h2 className="text-3xl font-extrabold text-[#082B4C] mt-1">End-to-End Estate Management</h2>
-          <p className="text-xs text-slate-600 mt-2">Built to eliminate rent leakage, caretaker headaches, and delayed reporting.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {havenData.services.map((svc, i) => (
-            <div key={i} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-card hover:shadow-elevated transition-all">
-              <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mb-4">
-                <CheckCircle2 className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-base text-[#082B4C]">{svc.title}</h3>
-              <p className="text-xs text-slate-600 mt-2 leading-relaxed">{svc.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Rental Properties with Filter */}
-      <section id="properties" className="py-20 bg-slate-100 border-t border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-            <div>
-              <span className="text-xs uppercase tracking-wider font-bold text-teal-600">Current Listings</span>
-              <h2 className="text-3xl font-extrabold text-[#082B4C] mt-1">Available Rental Units</h2>
-            </div>
-
-            {/* Filter Buttons */}
-            <div className="flex gap-2">
-              {['All', 'Available', 'Pending'].map(btn => (
                 <button
-                  key={btn}
-                  onClick={() => setFilterType(btn)}
-                  className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                    filterType === btn
-                      ? 'bg-[#082B4C] text-white'
-                      : 'bg-white text-slate-600 hover:bg-slate-200'
-                  }`}
+                  onClick={() => setActiveTab('properties')}
+                  className="px-7 py-3.5 rounded-xl bg-[#C5A059] hover:bg-[#b58f45] text-[#171A21] font-black text-xs uppercase tracking-wider shadow-lg transition-all"
                 >
-                  {btn} Units
+                  Explore Available Properties
                 </button>
-              ))}
+                <button
+                  onClick={() => setActiveTab('services')}
+                  className="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider border border-white/20 transition-all"
+                >
+                  Landlord Management Services
+                </button>
+              </div>
+
+              {/* Stats Bar */}
+              <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800">
+                {havenstoneData.stats.map((s, idx) => (
+                  <div key={idx}>
+                    <p className="font-serif text-2xl font-bold text-[#C5A059]">{s.value}</p>
+                    <p className="text-[11px] text-slate-400 mt-0.5">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
             </div>
+
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-3xl overflow-hidden border-2 border-slate-700 shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+                  alt="Havenstone Luxury Penthouse"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-6 flex flex-col justify-end text-white">
+                  <span className="px-2.5 py-1 bg-[#C5A059] text-[#171A21] text-[10px] font-black uppercase rounded w-fit mb-1">
+                    Featured Asset
+                  </span>
+                  <p className="font-serif text-xl font-bold">The Sovereign Penthouse — Riverside</p>
+                  <p className="text-xs text-slate-300">KES 180,000 / month • 4 Bedroom Luxury</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Property Search & Filter Bar */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+        <div className="bg-white rounded-2xl border border-slate-200/90 shadow-elevated p-5 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+          
+          <div className="md:col-span-6 relative">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchLocation}
+              onChange={e => setSearchLocation(e.target.value)}
+              placeholder="Search by neighborhood (e.g. Riverside, Kilimani, Lavington)..."
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#C5A059] text-slate-800"
+            />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="md:col-span-4">
+            <select
+              value={selectedType}
+              onChange={e => setSelectedType(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#C5A059] text-slate-800 bg-white"
+            >
+              <option value="All">All Property Types</option>
+              <option value="Penthouse">Luxury Penthouses</option>
+              <option value="Townhouse">Gated Townhouses</option>
+              <option value="Suite">Executive Apartments</option>
+            </select>
+          </div>
+
+          <div className="md:col-span-2">
+            <button
+              onClick={() => { setSearchLocation(""); setSelectedType("All"); }}
+              className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors"
+            >
+              Reset Filters
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Main Tabbed Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+        
+        {/* PROPERTIES SECTION */}
+        <section id="properties" className="space-y-10">
+          <div className="flex flex-col sm:flex-row items-baseline justify-between gap-4 border-b border-slate-200 pb-5">
+            <div>
+              <span className="text-xs uppercase tracking-widest font-bold text-[#C5A059]">Available Portfolio</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-[#171A21] mt-1">
+                Luxury Rental Residences
+              </h2>
+            </div>
+            <p className="text-xs text-slate-500">
+              Showing <strong>{filteredProperties.length}</strong> managed residences available for lease
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredProperties.map(prop => (
-              <div key={prop.id} className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card group">
-                <div className="relative aspect-[16/10] overflow-hidden">
+              <div 
+                key={prop.id}
+                className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-card hover:shadow-elevated transition-all flex flex-col group"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
                   <img
                     src={prop.image}
-                    alt={prop.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    alt={prop.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold text-white ${
-                    prop.status.includes('Available') ? 'bg-teal-600' : 'bg-amber-600'
-                  }`}>
-                    {prop.status}
-                  </span>
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-[#171A21] text-[#C5A059] text-[10px] font-bold uppercase rounded-full shadow-sm">
+                      {prop.tag}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white drop-shadow-md">
+                    <span className="text-lg font-bold font-serif">{prop.price}</span>
+                    <span className="text-xs bg-black/60 backdrop-blur-sm px-2.5 py-0.5 rounded-full">
+                      {prop.status}
+                    </span>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <p className="text-xs text-teal-600 font-bold">{prop.type}</p>
-                  <h3 className="text-lg font-bold text-[#082B4C] mt-1">{prop.name}</h3>
-                  <p className="text-xs text-slate-500 flex items-center gap-1 mt-1">
-                    <MapPin className="w-3.5 h-3.5" />
-                    {prop.location}
-                  </p>
-                  <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <span className="font-extrabold text-base text-[#082B4C] font-mono">{prop.rent}</span>
+
+                <div className="p-7 flex-1 flex flex-col justify-between space-y-5">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-[#171A21] group-hover:text-[#C5A059] transition-colors">
+                      {prop.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 flex items-center gap-1.5 mt-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
+                      <span>{prop.location}</span>
+                    </p>
+
+                    <div className="mt-4 pt-4 border-t border-slate-100 grid grid-cols-3 gap-2 text-xs text-slate-600 font-medium">
+                      <span className="flex items-center gap-1"><Bed className="w-3.5 h-3.5 text-slate-400" /> {prop.beds} Beds</span>
+                      <span className="flex items-center gap-1"><Bath className="w-3.5 h-3.5 text-slate-400" /> {prop.baths} Baths</span>
+                      <span className="flex items-center gap-1"><Maximize2 className="w-3.5 h-3.5 text-slate-400" /> {prop.sqft}</span>
+                    </div>
+
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {prop.amenities.map((am, i) => (
+                        <span key={i} className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]">
+                          {am}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-100 flex items-center gap-3">
+                    <button
+                      onClick={() => {
+                        setSelectedPropertyForViewing(prop);
+                        setViewingFormSubmitted(false);
+                      }}
+                      className="flex-1 py-2.5 rounded-xl bg-[#171A21] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-all"
+                    >
+                      Book Viewing Tour
+                    </button>
                     <a
-                      href={siteConfig.getWhatsAppLink(`Hi Haven Property, I am interested in scheduling a viewing for "${prop.name}".`)}
+                      href={siteConfig.getWhatsAppLink(`Hi Havenstone Properties, I am interested in inquiring about ${prop.title} (${prop.price}).`)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-700 text-xs font-bold transition-colors"
+                      className="p-2.5 rounded-xl border border-slate-200 text-emerald-600 hover:bg-emerald-50 transition-colors"
+                      title="Direct WhatsApp"
                     >
-                      Book Viewing
+                      <MessageSquare className="w-4 h-4" />
                     </a>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+        </section>
 
-        </div>
-      </section>
-
-      {/* Tenant Maintenance & Request Simulator */}
-      <section id="tenants" className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-card">
-          <div className="text-center max-w-xl mx-auto mb-8">
-            <span className="text-xs uppercase tracking-wider font-bold text-teal-600">Tenant Self-Service</span>
-            <h2 className="text-2xl font-extrabold text-[#082B4C] mt-1">Submit a Maintenance Ticket</h2>
-            <p className="text-xs text-slate-600 mt-1">Tenants can submit repairs 24/7 with instant tracking updates.</p>
+        {/* LANDLORD MANAGEMENT SERVICES */}
+        <section id="services" className="bg-[#171A21] rounded-3xl p-8 sm:p-14 text-white space-y-10">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs uppercase tracking-widest font-bold text-[#C5A059]">For Property Owners</span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-white">
+              Institutional Asset Management for Diaspora Landlords
+            </h2>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Living overseas? We eliminate tenancy headaches with rigorous tenant screening, automated M-Pesa rent collection, vetted maintenance crews, and encrypted financial statements.
+            </p>
           </div>
 
-          {maintenanceSubmitted ? (
-            <div className="p-6 bg-teal-50 border border-teal-200 rounded-2xl text-center space-y-2 animate-fadeIn">
-              <CheckCircle2 className="w-10 h-10 text-teal-600 mx-auto" />
-              <h3 className="text-lg font-bold text-[#082B4C]">Ticket #TKT-8901 Logged Successfully!</h3>
-              <p className="text-xs text-slate-600 max-w-md mx-auto">
-                Maintenance request for <strong>{tenantUnit}</strong> has been assigned to our standby technician. Caretaker and diaspora landlord notified.
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {havenstoneData.services.map(svc => (
+              <div key={svc.id} className="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
+                <div className="w-9 h-9 rounded-xl bg-[#C5A059]/20 text-[#C5A059] flex items-center justify-center font-bold">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <h3 className="font-serif text-base font-bold text-white">{svc.title}</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">{svc.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Interactive Maintenance Ticket Logger */}
+          <div className="pt-8 border-t border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 space-y-2">
+              <span className="text-xs font-bold text-[#C5A059] uppercase tracking-wider">Tenant Portal Feature</span>
+              <h3 className="text-xl font-bold font-serif text-white">Interactive Maintenance Request Logger</h3>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Experience how tenants log plumbing, electrical, or structural tickets directly with automated dispatch alerts.
               </p>
-              <button
-                onClick={() => {
-                  setMaintenanceSubmitted(false);
-                  setTenantUnit("");
-                  setTenantIssue("");
-                }}
-                className="mt-3 px-4 py-2 bg-[#082B4C] text-white text-xs font-semibold rounded-lg"
-              >
-                Log Another Request
+            </div>
+
+            <div className="lg:col-span-7 bg-slate-950 p-6 rounded-2xl border border-slate-800">
+              {ticketSuccess ? (
+                <div className="text-center py-4 space-y-2">
+                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                  <p className="font-bold text-white text-sm">Maintenance Ticket Dispatched</p>
+                  <p className="text-xs text-slate-400">Reference: #HST-9402 • Vetted technician assigned.</p>
+                  <button onClick={() => setTicketSuccess(false)} className="text-xs text-[#C5A059] underline font-bold mt-2">
+                    Log Another Demo Request
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={(e) => { e.preventDefault(); if(ticketUnit && ticketDesc) setTicketSuccess(true); }} className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <input
+                      type="text"
+                      placeholder="Apartment Unit (e.g. Sovereign Penthouse 4B)"
+                      value={ticketUnit}
+                      onChange={e => setTicketUnit(e.target.value)}
+                      required
+                      className="p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500"
+                    />
+                    <select className="p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white">
+                      <option>Plumbing & Hot Water</option>
+                      <option>Electrical & Backup Power</option>
+                      <option>Air Conditioning & HVAC</option>
+                    </select>
+                  </div>
+                  <textarea
+                    rows={2}
+                    placeholder="Describe issue (e.g. Water heater pilot light in master ensuite)..."
+                    value={ticketDesc}
+                    onChange={e => setTicketDesc(e.target.value)}
+                    required
+                    className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs"
+                  ></textarea>
+                  <button type="submit" className="px-5 py-2 rounded-xl bg-[#C5A059] text-[#171A21] font-bold text-xs uppercase tracking-wider">
+                    Submit Demo Maintenance Ticket
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+
+        </section>
+
+      </main>
+
+      {/* VIEWING ENQUIRY MODAL */}
+      {selectedPropertyForViewing && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200">
+            <div className="bg-[#171A21] p-6 text-white flex items-center justify-between">
+              <div>
+                <span className="text-xs uppercase font-bold text-[#C5A059]">Private Inspection Booking</span>
+                <h3 className="font-serif text-xl font-bold mt-0.5">{selectedPropertyForViewing.title}</h3>
+                <p className="text-xs text-slate-300">{selectedPropertyForViewing.price} • {selectedPropertyForViewing.location}</p>
+              </div>
+              <button onClick={() => setSelectedPropertyForViewing(null)} className="p-2 text-slate-400 hover:text-white">
+                <X className="w-5 h-5" />
               </button>
             </div>
-          ) : (
-            <form onSubmit={handleMaintenanceSubmit} className="space-y-4 max-w-lg mx-auto text-left">
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Unit Number & Building</label>
-                <input
-                  type="text"
-                  required
-                  value={tenantUnit}
-                  onChange={e => setTenantUnit(e.target.value)}
-                  placeholder="e.g. Unit A4, Haven Heights Kilimani"
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-teal-500 outline-none"
-                />
-              </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">Issue Category & Details</label>
-                <textarea
-                  rows={3}
-                  required
-                  value={tenantIssue}
-                  onChange={e => setTenantIssue(e.target.value)}
-                  placeholder="e.g. Master bathroom tap is leaking continuously. Need repair technician."
-                  className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-teal-500 outline-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs transition-colors shadow-sm"
-              >
-                Simulate Ticket Submission
-              </button>
-            </form>
-          )}
-        </div>
-      </section>
-
-      {/* Demo Footer */}
-      <footer id="contact" className="bg-[#082B4C] text-slate-300 py-12 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs">
-          <div>
-            <p className="font-bold text-white text-sm">Haven Property Management</p>
-            <p className="text-slate-400 mt-0.5">Argwings Kodhek Road, Kilimani, Nairobi, Kenya</p>
+            <div className="p-6">
+              {viewingFormSubmitted ? (
+                <div className="text-center py-6 space-y-3">
+                  <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+                  <h4 className="font-serif text-xl font-bold text-[#171A21]">Viewing Request Scheduled!</h4>
+                  <p className="text-xs text-slate-600 max-w-sm mx-auto">
+                    Thank you, <strong>{viewerName}</strong>. This demo inquiry is ready to send to our agency concierge:
+                  </p>
+                  <a
+                    href={siteConfig.getWhatsAppLink(`Hi Havenstone Properties, I scheduled a viewing for ${selectedPropertyForViewing.title} on ${viewingDate}. Name: ${viewerName}, Phone: ${viewerPhone}.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-md"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Confirm via WhatsApp</span>
+                  </a>
+                </div>
+              ) : (
+                <form onSubmit={handleViewingSubmit} className="space-y-4 text-xs">
+                  <div>
+                    <label className="font-bold text-slate-700 block mb-1">Your Full Name</label>
+                    <input
+                      type="text"
+                      required
+                      value={viewerName}
+                      onChange={e => setViewerName(e.target.value)}
+                      placeholder="e.g. David Mutiso"
+                      className="w-full p-3 rounded-xl border border-slate-200"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-bold text-slate-700 block mb-1">Phone Number (WhatsApp Preferred)</label>
+                    <input
+                      type="tel"
+                      required
+                      value={viewerPhone}
+                      onChange={e => setViewerPhone(e.target.value)}
+                      placeholder="+254 7XX XXX XXX"
+                      className="w-full p-3 rounded-xl border border-slate-200"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-bold text-slate-700 block mb-1">Preferred Viewing Date & Time</label>
+                    <input
+                      type="datetime-local"
+                      required
+                      value={viewingDate}
+                      onChange={e => setViewingDate(e.target.value)}
+                      className="w-full p-3 rounded-xl border border-slate-200"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 rounded-xl bg-[#C5A059] text-[#171A21] font-black text-xs uppercase tracking-wider shadow-md transition-all mt-2"
+                  >
+                    Confirm Demo Appointment
+                  </button>
+                </form>
+              )}
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-teal-400 font-mono">Caretaker Standby: +254 700 000 000</span>
-            <button
-              onClick={openRequestModal}
-              className="px-4 py-2 bg-teal-600 hover:bg-teal-500 text-white rounded-lg font-bold"
-            >
-              Request Website Like This
-            </button>
-          </div>
         </div>
-      </footer>
+      )}
 
     </div>
   );

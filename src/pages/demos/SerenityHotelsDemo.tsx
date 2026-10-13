@@ -2,225 +2,311 @@ import React, { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { 
   Hotel, Calendar, Users, Star, Utensils, Sparkles, MapPin, 
-  CheckCircle2, ArrowRight, ShieldCheck, DollarSign, Clock 
+  CheckCircle2, ArrowRight, ShieldCheck, DollarSign, Clock, MessageSquare, Compass, X
 } from 'lucide-react';
-import { serenityData } from '../../data/demoData';
+import { alderHouseData } from '../../data/demoData';
 import { siteConfig } from '../../config/siteConfig';
 
 export const SerenityHotelsDemo: React.FC = () => {
   const { openRequestModal } = useOutletContext<{ openRequestModal: () => void }>();
-  const [selectedRoom, setSelectedRoom] = useState(serenityData.rooms[0].id);
+  
+  // Interactive Booking Calculation state
+  const [selectedSuiteId, setSelectedSuiteId] = useState(alderHouseData.rooms[0].id);
   const [nights, setNights] = useState(3);
-  const [guests, setGuests] = useState("2 Adults");
-  const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [guests, setGuests] = useState("2 Guests");
+  const [checkInDate, setCheckInDate] = useState("2026-11-15");
+  const [bookingInquirySent, setBookingInquirySent] = useState(false);
+  const [guestName, setGuestName] = useState("");
+  const [guestEmail, setGuestEmail] = useState("");
 
-  const activeRoom = serenityData.rooms.find(r => r.id === selectedRoom) || serenityData.rooms[0];
-  const estimatedTotal = activeRoom.pricePerNight * nights;
+  const activeSuite = alderHouseData.rooms.find(r => r.id === selectedSuiteId) || alderHouseData.rooms[0];
+  const calculatedTotal = activeSuite.ratePerNight * nights;
+
+  const handleBookingSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (guestName) {
+      setBookingInquirySent(true);
+    }
+  };
 
   return (
-    <div className="bg-[#FAF8F5] text-slate-800 font-sans">
+    <div className="bg-[#F5F2EB] text-[#1E3A2F] font-sans min-h-screen">
       
-      {/* Hospitality Header */}
-      <header className="bg-[#064E3B] text-white sticky top-10 z-30 shadow-md">
+      {/* Editorial Luxury Header Navigation */}
+      <header className="bg-[#1E3A2F] text-white sticky top-10 z-30 shadow-md border-b border-[#C29B38]/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center font-bold">
-              <Hotel className="w-5 h-5" />
+          
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-[#C29B38] text-[#1E3A2F] flex items-center justify-center font-serif font-black text-lg shadow-sm">
+              <span>A</span>
             </div>
             <div>
-              <span className="font-extrabold text-xl tracking-widest uppercase font-serif">SERENITY</span>
-              <span className="text-[10px] tracking-widest text-amber-300 block -mt-1 uppercase">Hotels & Beach Lodge</span>
+              <span className="font-serif text-2xl tracking-widest uppercase block text-[#F5F2EB]">THE ALDER HOUSE</span>
+              <span className="text-[10px] tracking-widest text-[#C29B38] block -mt-1 uppercase font-bold">
+                Boutique Hotel & Coastal Sanctuary
+              </span>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-7 text-xs uppercase tracking-wider font-semibold text-emerald-100">
-            <a href="#suites" className="hover:text-amber-300 transition-colors">Suites & Villas</a>
-            <a href="#amenities" className="hover:text-amber-300 transition-colors">Amenities</a>
-            <a href="#booking" className="hover:text-amber-300 transition-colors">Book a Stay</a>
-            <a href="#dining" className="hover:text-amber-300 transition-colors">Coastal Dining</a>
+          <div className="hidden md:flex items-center space-x-7 text-xs uppercase tracking-widest font-semibold text-slate-200">
+            <a href="#suites" className="hover:text-[#C29B38] transition-colors">Suites & Villas</a>
+            <a href="#experiences" className="hover:text-[#C29B38] transition-colors">Experiences</a>
+            <a href="#dining" className="hover:text-[#C29B38] transition-colors">Coastal Dining</a>
+            <a href="#booking" className="hover:text-[#C29B38] transition-colors">Reservations</a>
           </div>
 
-          <button
-            onClick={openRequestModal}
-            className="px-4 py-2 rounded-lg bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs uppercase tracking-wider transition-colors"
-          >
-            Request Hotel Website
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href={siteConfig.getWhatsAppLink(undefined, "The Alder House Hotel")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Concierge Chat</span>
+            </a>
+            <button
+              onClick={openRequestModal}
+              className="px-4 py-2 rounded-lg bg-[#C29B38] hover:bg-[#b08b2e] text-[#1E3A2F] font-black text-xs uppercase tracking-wider transition-all"
+            >
+              Request Hotel Site
+            </button>
+          </div>
+
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-28 bg-[#064E3B] text-white text-center overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-6">
-          <div className="flex items-center justify-center gap-1 text-amber-300">
-            {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-300" />)}
+      <section className="relative py-28 md:py-36 bg-[#1E3A2F] text-white text-center overflow-hidden border-b border-[#C29B38]/20">
+        <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-7">
+          
+          <div className="inline-flex items-center gap-1.5 text-[#C29B38]">
+            {[...Array(5)].map((_, i) => (<Star key={i} className="w-4 h-4 fill-[#C29B38]" />))}
+            <span className="text-xs uppercase tracking-widest ml-2 text-slate-300 font-semibold">Boutique Luxury • Indian Ocean</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-serif font-extrabold tracking-tight">
-            An Oceanfront Sanctuary of Timeless Luxury
+
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-normal tracking-tight text-[#F5F2EB] leading-[1.1]">
+            An Oceanfront Sanctuary of Secluded Elegance
           </h1>
-          <p className="text-base sm:text-lg text-emerald-100 max-w-2xl mx-auto leading-relaxed">
-            Nestled on the pristine white shores of Diani, Kenya. Private infinity villas, Michelin-level coastal seafood, and rejuvenating ayurvedic spa treatments.
+
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            {alderHouseData.tagline}
           </p>
-          <div className="pt-4 flex justify-center gap-4">
-            <a href="#booking" className="px-7 py-3.5 bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg hover:bg-amber-300">
-              Check Room Availability
+
+          <div className="pt-2 flex flex-wrap justify-center gap-4">
+            <a 
+              href="#booking"
+              className="px-8 py-3.5 rounded-xl bg-[#C29B38] hover:bg-[#b08b2e] text-[#1E3A2F] font-black text-xs uppercase tracking-wider shadow-lg transition-all"
+            >
+              Check Availability & Rates
+            </a>
+            <a 
+              href="#suites"
+              className="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider border border-white/20 transition-all"
+            >
+              View Suites & Pavilions
             </a>
           </div>
+
         </div>
       </section>
 
-      {/* Interactive Booking Calculator Bar */}
-      <section id="booking" className="max-w-6xl mx-auto px-4 -mt-10 relative z-20">
-        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-premium">
-          <div className="text-xs uppercase font-bold text-amber-800 tracking-wider mb-4 flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-emerald-800" />
-            <span>Interactive Stay Price Calculator & Direct Enquiry</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Select Suite</label>
-              <select
-                value={selectedRoom}
-                onChange={e => setSelectedRoom(e.target.value)}
-                className="w-full p-2.5 rounded-lg border border-slate-200 text-xs font-medium bg-slate-50 outline-none"
-              >
-                {serenityData.rooms.map(r => (
-                  <option key={r.id} value={r.id}>{r.name} (${r.pricePerNight}/night)</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Duration of Stay</label>
-              <select
-                value={nights}
-                onChange={e => setNights(Number(e.target.value))}
-                className="w-full p-2.5 rounded-lg border border-slate-200 text-xs font-medium bg-slate-50 outline-none"
-              >
-                {[1, 2, 3, 5, 7, 10, 14].map(n => (
-                  <option key={n} value={n}>{n} Nights</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Number of Guests</label>
-              <select
-                value={guests}
-                onChange={e => setGuests(e.target.value)}
-                className="w-full p-2.5 rounded-lg border border-slate-200 text-xs font-medium bg-slate-50 outline-none"
-              >
-                <option value="1 Adult">1 Adult</option>
-                <option value="2 Adults">2 Adults</option>
-                <option value="2 Adults + 1 Child">2 Adults + 1 Child</option>
-                <option value="4 Guests (Family Villa)">4 Guests (Family Villa)</option>
-              </select>
-            </div>
-
-            <div>
-              <div className="text-xs text-slate-500">Estimated Total:</div>
-              <div className="text-2xl font-black text-[#064E3B] font-mono">${estimatedTotal}</div>
-            </div>
-          </div>
-
-          <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span className="text-xs text-slate-500">
-              Includes full gourmet breakfast, oceanfront pool access & airport shuttle.
-            </span>
-            <button
-              onClick={() => setBookingConfirmed(true)}
-              className="px-6 py-2.5 rounded-xl bg-[#064E3B] hover:bg-[#08634B] text-white text-xs font-bold uppercase tracking-wider transition-colors"
-            >
-              Simulate Booking Request
-            </button>
-          </div>
-
-          {bookingConfirmed && (
-            <div className="mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center justify-between">
-              <span>
-                ✓ <strong>Enquiry Dispatched:</strong> {activeRoom.name} for {nights} nights ({guests}) reserved for quotation review.
-              </span>
-              <button onClick={() => setBookingConfirmed(false)} className="font-bold underline">Dismiss</button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Room Showcase */}
-      <section id="suites" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs uppercase tracking-widest font-bold text-amber-700">Accommodations</span>
-          <h2 className="text-3xl font-serif font-extrabold text-[#064E3B] mt-1">Our Signature Suites</h2>
+      {/* Suites & Rooms Showcase */}
+      <section id="suites" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs uppercase tracking-widest font-bold text-[#C29B38]">Private Accommodations</span>
+          <h2 className="text-3xl sm:text-4xl font-serif text-[#1E3A2F]">Suites, Pavilions & Private Villas</h2>
+          <p className="text-xs text-slate-600">Thoughtfully integrated with indigenous coastal gardens and turquoise sea panoramas.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {serenityData.rooms.map(room => (
-            <div key={room.id} className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card flex flex-col">
-              <div className="aspect-[16/10] overflow-hidden">
-                <img src={room.image} alt={room.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <div className="flex justify-between items-baseline">
-                    <h3 className="font-serif font-bold text-lg text-[#064E3B]">{room.name}</h3>
-                    <span className="font-bold text-amber-800 font-mono text-base">${room.pricePerNight}<span className="text-xs text-slate-400 font-sans">/nt</span></span>
+          {alderHouseData.rooms.map(room => (
+            <div 
+              key={room.id}
+              className={`rounded-3xl overflow-hidden border transition-all flex flex-col justify-between bg-white ${
+                selectedSuiteId === room.id 
+                  ? 'border-2 border-[#C29B38] shadow-elevated ring-4 ring-[#C29B38]/10' 
+                  : 'border-slate-200/90 shadow-card'
+              }`}
+            >
+              <div>
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                  <img src={room.image} alt={room.name} className="w-full h-full object-cover" />
+                  <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-serif">
+                    From <strong>${room.ratePerNight}</strong> / night
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">{room.capacity} • {room.bed}</p>
+                </div>
 
-                  <div className="mt-4 space-y-1.5 text-xs text-slate-600">
-                    {room.perks.map((p, i) => (
-                      <p key={i} className="flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                        {p}
-                      </p>
+                <div className="p-6 space-y-3">
+                  <h3 className="font-serif text-xl font-bold text-[#1E3A2F]">{room.name}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{room.desc}</p>
+                  
+                  <div className="pt-3 border-t border-slate-100 flex justify-between text-xs text-slate-500 font-medium">
+                    <span>{room.bed}</span>
+                    <span>{room.capacity}</span>
+                  </div>
+
+                  <div className="pt-2 flex flex-wrap gap-1.5">
+                    {room.amenities.map((am, i) => (
+                      <span key={i} className="px-2 py-0.5 rounded bg-[#F5F2EB] text-[#1E3A2F] text-[10px]">
+                        {am}
+                      </span>
                     ))}
                   </div>
                 </div>
+              </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-100">
-                  <button
-                    onClick={() => {
-                      setSelectedRoom(room.id);
-                      const el = document.getElementById('booking');
-                      el?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="w-full py-2.5 rounded-lg border border-emerald-800 text-[#064E3B] hover:bg-emerald-50 text-xs font-bold uppercase transition-colors"
-                  >
-                    Select in Calculator
-                  </button>
-                </div>
+              <div className="p-6 pt-0">
+                <button
+                  onClick={() => {
+                    setSelectedSuiteId(room.id);
+                    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className={`w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                    selectedSuiteId === room.id 
+                      ? 'bg-[#1E3A2F] text-[#C29B38]' 
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
+                  }`}
+                >
+                  {selectedSuiteId === room.id ? 'Selected in Calculator' : 'Select This Suite'}
+                </button>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Amenities & Dining */}
-      <section id="dining" className="py-20 bg-emerald-950 text-white border-t border-emerald-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <span className="text-xs uppercase tracking-widest text-amber-300 font-bold">Unrivaled Hospitality</span>
-          <h2 className="text-3xl font-serif font-bold">Resort Amenities & Dining</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-5xl mx-auto">
-            {serenityData.amenities.map((a, i) => (
-              <div key={i} className="p-5 rounded-xl bg-white/5 border border-white/10 text-xs leading-relaxed text-emerald-100">
-                <Utensils className="w-5 h-5 text-amber-400 mb-2" />
-                {a}
+      {/* Interactive Reservation Calculator */}
+      <section id="booking" className="py-20 bg-white border-t border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          
+          <div className="text-center space-y-2">
+            <span className="text-xs uppercase tracking-widest font-bold text-[#C29B38]">Direct Booking Engine</span>
+            <h2 className="text-3xl font-serif text-[#1E3A2F]">Interactive Stay Rate Estimator</h2>
+            <p className="text-xs text-slate-600">Simulate reservation pricing with live date calculations and direct concierge dispatch.</p>
+          </div>
+
+          <div className="bg-[#F5F2EB] p-8 rounded-3xl border border-slate-200/90 shadow-subtle">
+            {bookingInquirySent ? (
+              <div className="text-center py-6 space-y-3">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+                <h3 className="text-2xl font-serif font-bold text-[#1E3A2F]">Stay Inquiry Formatted!</h3>
+                <p className="text-xs text-slate-600 max-w-sm mx-auto">
+                  Thank you, <strong>{guestName}</strong>. Your stay for {nights} nights at {activeSuite.name} (${calculatedTotal}) is prepared:
+                </p>
+                <a
+                  href={siteConfig.getWhatsAppLink(`Hello The Alder House Hotel, I would like to inquire about reserving ${activeSuite.name} for ${nights} nights starting ${checkInDate} (${guests}). Total estimate: $${calculatedTotal}. Guest: ${guestName}.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Send Inquiry to Concierge WhatsApp</span>
+                </a>
+              </div>
+            ) : (
+              <form onSubmit={handleBookingSubmit} className="space-y-6 text-xs">
+                
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className="font-bold text-[#1E3A2F] block mb-1">Chosen Suite</label>
+                    <select
+                      value={selectedSuiteId}
+                      onChange={e => setSelectedSuiteId(e.target.value)}
+                      className="w-full p-3 rounded-xl border border-slate-200 bg-white"
+                    >
+                      {alderHouseData.rooms.map(r => (
+                        <option key={r.id} value={r.id}>{r.name} (${r.ratePerNight}/nt)</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="font-bold text-[#1E3A2F] block mb-1">Length of Stay</label>
+                    <select
+                      value={nights}
+                      onChange={e => setNights(Number(e.target.value))}
+                      className="w-full p-3 rounded-xl border border-slate-200 bg-white"
+                    >
+                      {[1, 2, 3, 4, 5, 7, 10, 14].map(n => (
+                        <option key={n} value={n}>{n} Night{n > 1 ? 's' : ''}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="font-bold text-[#1E3A2F] block mb-1">Check-in Date</label>
+                    <input
+                      type="date"
+                      value={checkInDate}
+                      onChange={e => setCheckInDate(e.target.value)}
+                      className="w-full p-3 rounded-xl border border-slate-200 bg-white"
+                    />
+                  </div>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-white border border-slate-200 flex flex-col sm:flex-row items-baseline justify-between gap-2">
+                  <div>
+                    <span className="text-[11px] text-slate-500 uppercase tracking-wider block">Estimated Total for {nights} Nights:</span>
+                    <p className="text-3xl font-serif font-bold text-[#1E3A2F]">${calculatedTotal}</p>
+                    <p className="text-[10px] text-slate-400">Includes gourmet artisanal breakfast & airport transfers.</p>
+                  </div>
+                  <span className="text-[11px] font-bold text-[#C29B38] bg-[#F5F2EB] px-3 py-1 rounded-full">
+                    Commission-Free Direct Rate
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Guest Full Name (e.g. Victoria Kimani)"
+                    value={guestName}
+                    onChange={e => setGuestName(e.target.value)}
+                    className="p-3 rounded-xl border border-slate-200 bg-white"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Guest Email (Optional)"
+                    value={guestEmail}
+                    onChange={e => setGuestEmail(e.target.value)}
+                    className="p-3 rounded-xl border border-slate-200 bg-white"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-3.5 rounded-xl bg-[#C29B38] hover:bg-[#b08b2e] text-[#1E3A2F] font-black text-xs uppercase tracking-wider shadow-md transition-all"
+                >
+                  Confirm Stay Inquiry Details
+                </button>
+
+              </form>
+            )}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Coastal Dining & Experiences */}
+      <section id="experiences" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#1E3A2F] rounded-3xl p-8 sm:p-14 text-white space-y-8">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs uppercase tracking-widest font-bold text-[#C29B38]">The Alder Experience</span>
+            <h2 className="text-3xl font-serif text-white">Bespoke Gastronomy & Ocean Excursions</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {alderHouseData.experiences.map((exp, idx) => (
+              <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                <Compass className="w-5 h-5 text-[#C29B38]" />
+                <h3 className="font-serif text-base font-bold text-white">{exp.title}</h3>
+                <p className="text-xs text-slate-300 leading-relaxed">{exp.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Hotel Footer */}
-      <footer className="bg-black text-slate-400 py-10 text-xs border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p>© Serenity Hotels & Resorts, Diani Beach Road, Kwale County, Kenya.</p>
-          <button onClick={openRequestModal} className="text-amber-400 font-bold hover:underline">
-            Request Similar Hotel Website →
-          </button>
-        </div>
-      </footer>
 
     </div>
   );

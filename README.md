@@ -63,20 +63,20 @@ In `src/config/siteConfig.ts`, update `siteConfig.packages` to customize the del
 
 Every demo is accessible via its own dedicated URL and features distinct industry branding, color palettes, and real interactive elements:
 
-| # | Demo Name | Dedicated Route | Key Interactive Features |
-|---|---|---|---|
-| 1 | **Haven Property Management** | `/demos/haven-property-management` | Rental vacancies search, tenant maintenance ticket logger, landlord remittance overview. |
-| 2 | **PrimeNest Realty** | `/demos/primenest-realty` | Real estate listings, location filter, property inspect modal, free valuation form. |
-| 3 | **BuildStrong Construction** | `/demos/buildstrong-construction` | Commercial & civil contracting portfolio, NCA-1 metrics, tender RFP quotation estimator. |
-| 4 | **Serenity Hotels & Resorts** | `/demos/serenity-hotels` | Luxury coastal resort, interactive room selector with dynamic stay total calculator. |
-| 5 | **The Green Fork Restaurant** | `/demos/green-fork-restaurant` | Artisanal dining, categorized menu with dietary filters, table reservation engine, demo orders. |
-| 6 | **Apex Business Consulting** | `/demos/apex-consulting` | Corporate strategy & market entry, quantified case study metrics, partner discovery calls. |
-| 7 | **CityCare Medical Clinic** | `/demos/citycare-clinic` | Specialty departments, doctor profiles, 24/7 pharmacy notice, appointment triage form. |
-| 8 | **SparklePro Services** | `/demos/sparklepro-services` | Residential & office cleaning, interactive bedroom/square-footage cost estimator. |
-| 9 | **EduBridge Academy** | `/demos/edubridge-academy` | Tech certificate programs, curriculum syllabus tabs, admission application engine. |
-| 10 | **SafariVista Tours** | `/demos/safarivista-tours` | African wildlife safaris, day-by-day itineraries, bespoke safari inquiry builder. |
-| 11 | **LuxeCart Boutique** | `/demos/luxecart-boutique` | High-fashion e-commerce, product filters, interactive cart drawer with quantity toggles & demo checkout. |
-| 12 | **SwiftMove Logistics** | `/demos/swiftmove-logistics` | Freight forwarding, fleet specs, and functional sample cargo tracking simulator (`SWIFT-8921` / `SWIFT-4012`). |
+| # | Demo Brand | Industry Vertical | Dedicated Routes | Key Interactive Features |
+|---|---|---|---|---|
+| 1 | **Havenstone Properties** | Property Management & Real Estate | `/demos/property` <br> `/demos/havenstone-properties` | Executive rental listings, tenant maintenance ticket logger, diaspora remittance overview. |
+| 2 | **Ironwood Construction Group** | Construction & Engineering | `/demos/construction` <br> `/demos/ironwood-construction` | Commercial & civil infrastructure portfolio, NCA-1 safety compliance, project RFP estimator. |
+| 3 | **The Alder House Hotel** | Hotels & Hospitality | `/demos/hotel` <br> `/demos/alder-house-hotel` | Oceanfront boutique sanctuary, live suite selector with total stay calculator, experience curator. |
+| 4 | **Ember & Olive** | Restaurants & Cafés | `/demos/restaurant` <br> `/demos/ember-olive` | Artisanal dining, categorized wood-fired hearth menu, dietary tags, table reservation engine. |
+| 5 | **Northstar Advisory** | Consulting & Professional Services | `/demos/consultancy` <br> `/demos/northstar-advisory` | Corporate scale practices, quantified case study metrics, managing partner consultation booking. |
+| 6 | **WillowCare Medical Centre** | Clinics & Healthcare | `/demos/clinic` <br> `/demos/willowcare-clinic` | Clinical departments, specialist doctor roster, 24/7 emergency notice, appointment triage. |
+| 7 | **Aura Living Boutique** | Retail & E-commerce | `/demos/ecommerce` <br> `/demos/aura-living` | Curated lifestyle boutique, category filter, slide-out cart drawer with live quantity adjustments. |
+| 8 | **Oakridge Academy** | Schools & Education | `/demos/education` <br> `/demos/oakridge-academy` | Cambridge/IB academic tracks, university placement metrics, campus tour & admissions engine. |
+| 9 | **Lumina Spa & Wellness** | Beauty, Salons & Wellness | `/demos/beauty` <br> `/demos/lumina-wellness` | Botanical wellness therapies, hydrotherapy amenities, treatment package duration selector. |
+| 10 | **SwiftMove Logistics** | Logistics & Transport | `/demos/logistics` <br> `/demos/swiftmove-logistics` | Cross-border freight corridors, fleet specs, and functional sample cargo tracking simulator (`SWIFT-8921` / `SWIFT-4012`). |
+| 11 | **SafariVista Expeditions** | Travel & Tourism | `/demos/travel` <br> `/demos/safarivista-tours` | Bespoke African safari itineraries, migration highlight cards, custom expedition planner. |
+| 12 | **HopePath Community Foundation** | Nonprofits & NGOs | `/demos/nonprofit` <br> `/demos/hopepath-foundation` | Clean borehole & digital village pillars, audited 89% programmatic financial transparency meter. |
 
 Every demo contains:
 - A discreet top banner explaining it is a portfolio concept demonstration.

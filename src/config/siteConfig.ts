@@ -63,18 +63,18 @@ export const siteConfig = {
       ]
     },
     {
-      id: "premium",
-      name: "Premium Website",
-      tagline: "Advanced custom functionality, client portals & specialized integrations",
+      id: "ecommerce",
+      name: "Ecommerce Website",
+      tagline: "Online storefront with product catalog, digital payments & inventory workflows",
       priceNote: "Request a Quote",
-      idealFor: "Property tech portals, resorts with booking engines, multi-branch clinics & e-commerce",
+      idealFor: "Retail brands, boutiques, wholesale distributors, and digital product sellers",
       features: [
-        "Custom functionality & dynamic workflows",
-        "Advanced integrations (payment readiness, M-Pesa, booking calculators)",
-        "More detailed page structures & multi-tier catalogs",
-        "Additional bespoke design customization & branding",
-        "Role-based client or tenant portals",
-        "Priority post-launch maintenance & support"
+        "Structured product catalog with categories & search",
+        "Mobile shopping cart & streamlined checkout experience",
+        "M-Pesa STK Push, card & international payment readiness",
+        "Automated order confirmation & WhatsApp notifications",
+        "Inventory management & promotional discount engine",
+        "Post-launch technical support & hosting guidance"
       ]
     }
   ] as WebsitePackage[],
