@@ -12,7 +12,9 @@ export type ProjectCategory =
   | "Logistics & Transport"
   | "Travel & Tourism"
   | "Nonprofits & Community Organizations"
+  | "Trading & Membership Platforms"
   // Legacy short aliases:
+  | "Trading & Membership Platform"
   | "Property Management"
   | "Real Estate"
   | "Construction"

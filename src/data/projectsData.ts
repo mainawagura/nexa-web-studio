@@ -13,7 +13,8 @@ export const categoriesList: ProjectCategory[] = [
   "Beauty, Salons & Wellness",
   "Logistics & Transport",
   "Travel & Tourism",
-  "Nonprofits & Community Organizations"
+  "Nonprofits & Community Organizations",
+  "Trading & Membership Platforms"
 ];
 
 export const projectsData: ProjectDemo[] = [
@@ -25,18 +26,18 @@ export const projectsData: ProjectDemo[] = [
     category: "Property Management & Real Estate",
     categoryDisplay: "Property Management",
     industry: "Luxury Estates, Rentals & Diaspora Asset Management",
-    tagline: "Sophisticated asset management, rental listings, and transparent owner remittance",
-    shortDescription: "An elegant editorial property management platform featuring searchable luxury rental listings, location and price filters, interactive amenities inspection, and landlord remittance reporting.",
-    fullDescription: "Built for premier real estate developers, property managers, and diaspora landlords. Delivers effortless property discovery, schedule viewing appointments, and remote management transparency.",
+    tagline: "Better Property Management. Better Returns.",
+    shortDescription: "A premium editorial property management and rental platform featuring multi-parameter Kenyan property filtering, private viewing booking, landlord quote estimation, and a diaspora owner ledger portal.",
+    fullDescription: "Built for premier Kenyan real estate developers, property managers, and diaspora landlords. Delivers effortless property discovery in Nairobi and Kiambu, scheduled viewing appointments, automated Paybill remittance tracking, and remote asset stewardship.",
     colorScheme: {
-      primary: "#171A21", // Charcoal
-      secondary: "#C5A059", // Muted Gold
-      accent: "#E2D3B3",
-      bgBadge: "bg-amber-50",
-      textBadge: "text-amber-900"
+      primary: "#0A1E17", // Deep Forest Green
+      secondary: "#C5A059", // Champagne Gold
+      accent: "#15382B",
+      bgBadge: "bg-[#0A1E17]/10",
+      textBadge: "text-[#0A1E17]"
     },
-    keyCapabilities: ["Filterable Property Search", "Viewing Appointment Engine", "Amenities & Floorplans", "Landlord Remittance Overview"],
-    features: ["Location & Price Filters", "High-Resolution Image Galleries", "Viewing Request Flow", "Diaspora Owner Portal Overview"],
+    keyCapabilities: ["Kenyan Multi-Filter Rental Catalogue", "Private Inspection Booking Flow", "Landlord Quote & Remittance Calculator", "Diaspora Owner Portal Showcase"],
+    features: ["Location & Price Filters (KSh)", "High-Resolution Image Galleries", "Viewing Request Flow", "Diaspora Owner Portal Overview"],
     previewImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
     mobilePreviewImage: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=500&q=80",
     route: "/demos/property",
@@ -97,25 +98,25 @@ export const projectsData: ProjectDemo[] = [
 
   // 4. RESTAURANT & CAFÉ (Demo 4 from Master Prompt)
   {
-    id: "ember-olive",
+    id: "savanna-table",
     slug: "restaurant",
-    name: "Ember & Olive",
+    name: "Savanna Table",
     category: "Restaurants & Cafés",
     categoryDisplay: "Restaurants & Dining",
-    industry: "Artisanal Wood-Fired Hearth & Natural Cellar",
-    tagline: "Charred flavors, farm-harvested seasonal produce, and handcrafted cellar pairings",
-    shortDescription: "Warm editorial dining website featuring a categorized hearth menu with dietary indicators, table reservation engine, private dining inquiry, and wine list highlights.",
-    fullDescription: "Engineered for upscale bistros, farm-to-table dining rooms, and artisanal cafes looking to elevate their brand, drive weekend reservations, and display mouth-watering dishes.",
+    industry: "Contemporary African Cuisine & Botanical Hearth",
+    tagline: "A Taste of Kenya, Beautifully Reimagined",
+    shortDescription: "A breathtaking editorial restaurant website featuring contemporary Kenyan cuisine, interactive multi-course menu filters, online table booking, and private dining showcases.",
+    fullDescription: "Designed for premium Kenyan restaurants, fine-dining bistros, and boutique hospitality spaces. Delivers mouth-watering culinary storytelling, table reservation funnels, and seamless WhatsApp booking workflows.",
     colorScheme: {
-      primary: "#283618", // Deep Olive
-      secondary: "#BC6C25", // Terracotta
-      accent: "#DDA15E",
-      bgBadge: "bg-amber-50",
-      textBadge: "text-amber-900"
+      primary: "#1A1715", // Charcoal
+      secondary: "#C85A32", // Terracotta
+      accent: "#E27651",
+      bgBadge: "bg-[#C85A32]/10",
+      textBadge: "text-[#C85A32]"
     },
-    keyCapabilities: ["Categorized Hearth Menu", "Online Table Reservation", "Dietary Tags (Vegan/GF)", "Private Dining Inquiries"],
-    features: ["Interactive Seasonal Menu", "Dietary Filter Support", "Table Booking Engine", "Cellar & Cocktail Pairings"],
-    previewImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80",
+    keyCapabilities: ["Interactive 5-Course Menu Filter", "Online Table Reservation Engine", "Private Dining & Event Showcase", "WhatsApp Host Booking Concierge"],
+    features: ["Interactive Seasonal Menu", "Dietary Filter Support (V/GF)", "Table Booking Engine", "Cellar & Cocktail Pairings"],
+    previewImage: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80",
     mobilePreviewImage: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=500&q=80",
     route: "/demos/restaurant",
     featured: true
@@ -327,5 +328,31 @@ export const projectsData: ProjectDemo[] = [
     mobilePreviewImage: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=500&q=80",
     route: "/demos/nonprofit",
     featured: false
+  },
+
+  // 13. TRADING SIGNALS & MEMBERSHIP PLATFORM
+  {
+    id: "nexa-tradehub",
+    slug: "tradehub",
+    name: "Nexa TradeHub",
+    category: "Trading & Membership Platforms",
+    categoryDisplay: "Trading & Membership Platform",
+    industry: "Forex, Crypto & Indices Signals and Community Subscriptions",
+    tagline: "Trading & Membership Platform",
+    shortDescription: "A modern trading signals and membership management platform for forex educators, signal providers and trading communities.",
+    fullDescription: "Built for trading educators, signal providers, and financial market mentors. Features real-time signal broadcasting, tiered VIP gating, subscriber analytics, and an integrated member performance dashboard.",
+    colorScheme: {
+      primary: "#0B0F19",
+      secondary: "#10B981", // Emerald Green
+      accent: "#38BDF8", // Cyan
+      bgBadge: "bg-emerald-950/40",
+      textBadge: "text-emerald-400"
+    },
+    keyCapabilities: ["Real-Time Signal Broadcast", "Tiered VIP Gating (Free/VIP)", "Subscriber MRR Analytics", "Interactive Performance Charts"],
+    features: ["Real-time Signal Feed", "Copy-Trade Details (SL/TP)", "Member & Admin Dashboards", "M-Pesa & Card Membership"],
+    previewImage: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1000&q=80",
+    mobilePreviewImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=500&q=80",
+    route: "/demos/tradehub",
+    featured: true
   }
 ];

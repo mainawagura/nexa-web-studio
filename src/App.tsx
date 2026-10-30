@@ -14,7 +14,8 @@ import { ContactPage } from './pages/ContactPage';
 import { HavenPropertyDemo } from './pages/demos/HavenPropertyDemo'; // Havenstone Properties
 import { BuildStrongDemo } from './pages/demos/BuildStrongDemo';     // Ironwood Construction Group
 import { SerenityHotelsDemo } from './pages/demos/SerenityHotelsDemo'; // The Alder House Hotel
-import { GreenForkDemo } from './pages/demos/GreenForkDemo';         // Ember & Olive Restaurant
+import { SavannaTableDemo } from './pages/demos/SavannaTableDemo';     // Savanna Table Restaurant
+import { GreenForkDemo } from './pages/demos/GreenForkDemo';         // Legacy GreenFork / Ember & Olive
 import { ApexConsultingDemo } from './pages/demos/ApexConsultingDemo'; // Northstar Advisory
 import { CityCareClinicDemo } from './pages/demos/CityCareClinicDemo'; // WillowCare Medical Centre
 import { LuxeCartBoutiqueDemo } from './pages/demos/LuxeCartBoutiqueDemo'; // Aura Living Boutique
@@ -24,6 +25,7 @@ import { SwiftMoveDemo } from './pages/demos/SwiftMoveDemo';         // SwiftMov
 import { SafariVistaToursDemo } from './pages/demos/SafariVistaToursDemo'; // SafariVista Expeditions
 import { HopePathFoundationDemo } from './pages/demos/HopePathFoundationDemo'; // HopePath Foundation
 import { PrimeNestRealtyDemo } from './pages/demos/PrimeNestRealtyDemo';
+import { TradeHubDemo } from './pages/demos/TradeHubDemo'; // Nexa TradeHub
 
 // Scroll to top automatically on route changes
 function ScrollToTop() {
@@ -71,9 +73,10 @@ export function App() {
           <Route path="/demos/serenity-hotels" element={<SerenityHotelsDemo />} />
 
           {/* Demo 4: Restaurant & Café */}
-          <Route path="/demos/restaurant" element={<GreenForkDemo />} />
-          <Route path="/demos/ember-olive" element={<GreenForkDemo />} />
-          <Route path="/demos/green-fork-restaurant" element={<GreenForkDemo />} />
+          <Route path="/demos/restaurant" element={<SavannaTableDemo />} />
+          <Route path="/demos/savanna-table" element={<SavannaTableDemo />} />
+          <Route path="/demos/ember-olive" element={<SavannaTableDemo />} />
+          <Route path="/demos/green-fork-restaurant" element={<SavannaTableDemo />} />
 
           {/* Demo 5: Consulting & Professional Services */}
           <Route path="/demos/consultancy" element={<ApexConsultingDemo />} />
@@ -118,6 +121,11 @@ export function App() {
           <Route path="/demos/nonprofit" element={<HopePathFoundationDemo />} />
           <Route path="/demos/community" element={<HopePathFoundationDemo />} />
           <Route path="/demos/hopepath-foundation" element={<HopePathFoundationDemo />} />
+
+          {/* Demo 13: Trading Signals & Membership Platform */}
+          <Route path="/demos/tradehub" element={<TradeHubDemo />} />
+          <Route path="/demos/nexa-tradehub" element={<TradeHubDemo />} />
+          <Route path="/demos/trade-hub" element={<TradeHubDemo />} />
         </Route>
 
         {/* Fallback route */}
